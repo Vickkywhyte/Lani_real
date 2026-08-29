@@ -289,7 +289,7 @@
       box-shadow: 0 2px 18px rgba(0,0,0,.055);
       position: relative; overflow: hidden;
       transition: transform .2s var(--ease-out), box-shadow .2s var(--ease-out);
-      transform-style: preserve-3d; cursor: default;
+      transform-style: preserve-3d; cursor: pointer;
     }
     .service-card::before {
       content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
@@ -305,6 +305,14 @@
     .service-card h3 { font-family: var(--serif); font-size: 1.25rem; color: var(--dark); margin-bottom: .65rem; }
     .service-card p { color: var(--mid); font-size: .93rem; line-height: 1.72; margin-bottom: 1.1rem; }
     .service-price { color: var(--gold); font-weight: 700; font-size: .88rem; letter-spacing: .04em; }
+    .service-book-link {
+      display: flex; width: fit-content; align-items: center; min-height: 44px;
+      color: var(--gold); font-size: .85rem; font-weight: 600;
+      text-decoration: none; border-bottom: 1px solid transparent;
+      transition: border-color .2s, color .2s; cursor: pointer;
+    }
+    .service-card:hover .service-book-link,
+    .service-book-link:hover { color: var(--gold-l); border-bottom-color: currentColor; }
 
     /* ── ABOUT ── */
     #about { background: var(--white); }
@@ -469,6 +477,12 @@
     }
     .booking-form:focus-within { box-shadow: 0 0 0 1px rgba(184,146,74,.3), 0 12px 40px rgba(0,0,0,.2); }
     .booking-form h3 { font-family: var(--serif); font-size: 1.45rem; color: #fff; margin-bottom: 1.6rem; }
+    .booking-form.glow-pulse { animation: bookingGlowPulse 1.5s var(--ease-out); }
+    @keyframes bookingGlowPulse {
+      0%   { box-shadow: 0 0 0 0 rgba(184,146,74,.65); }
+      35%  { box-shadow: 0 0 34px 8px rgba(184,146,74,.5); }
+      100% { box-shadow: 0 0 0 0 rgba(184,146,74,0); }
+    }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
     .form-group { display: flex; flex-direction: column; gap: .38rem; margin-bottom: 1rem; }
     .form-group label { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.5); transition: color .2s; }
@@ -824,12 +838,12 @@
     <p class="section-desc">Specialised hair services in Hamilton — from sleek ponytails and sew-ins to custom wig builds and protective braids.</p>
   </div>
   <div class="services-grid">
-    <div class="service-card fade"><span class="service-icon">🎀</span><h3>Ponytails</h3><p>Natural, frontal, braided and half-up/half-down ponytail styles. Hair must be washed and blown out with no oils or grease.</p><span class="service-price">Starting at $130</span></div>
-    <div class="service-card fade"><span class="service-icon">💇</span><h3>Sew-In Services</h3><p>Closure, frontal, tribal, flip-over and leave-out sew-ins. Full customization included — braid down, glue melt, and styling.</p><span class="service-price">Starting at $150</span></div>
-    <div class="service-card fade"><span class="service-icon">✨</span><h3>Wig Installs</h3><p>Closure, frontal and 360 installs with full lace customization (plucking, tinting, bald cap application) and styling.</p><span class="service-price">Starting at $150</span></div>
-    <div class="service-card fade"><span class="service-icon">🧵</span><h3>Wig Construction</h3><p>Custom frontal and closure wig builds, ready in 3–5 days. Bring your lace and bundles or let Lani source premium hair for you.</p><span class="service-price">Starting at $150</span></div>
-    <div class="service-card fade"><span class="service-icon">🌿</span><h3>Natural Hair &amp; Braids</h3><p>Cornrows, wash &amp; style, retouching, and regular or knotless braids in all sizes — midback, waist and hip length.</p><span class="service-price">Starting at $40</span></div>
-    <div class="service-card fade"><span class="service-icon">🎨</span><h3>Colour &amp; Customization</h3><p>Lace plucking, bleaching, tinting, root touch-ups, full colouring, highlights, revamping and elastic band application.</p><span class="service-price">Starting at $5</span></div>
+    <div class="service-card fade" data-service="Ponytails" tabindex="0"><span class="service-icon">🎀</span><h3>Ponytails</h3><p>Natural, frontal, braided and half-up/half-down ponytail styles. Hair must be washed and blown out with no oils or grease.</p><span class="service-price">Starting at $130</span><span class="service-book-link">Book this →</span></div>
+    <div class="service-card fade" data-service="Sew-In Services" tabindex="0"><span class="service-icon">💇</span><h3>Sew-In Services</h3><p>Closure, frontal, tribal, flip-over and leave-out sew-ins. Full customization included — braid down, glue melt, and styling.</p><span class="service-price">Starting at $150</span><span class="service-book-link">Book this →</span></div>
+    <div class="service-card fade" data-service="Wig Installs" tabindex="0"><span class="service-icon">✨</span><h3>Wig Installs</h3><p>Closure, frontal and 360 installs with full lace customization (plucking, tinting, bald cap application) and styling.</p><span class="service-price">Starting at $150</span><span class="service-book-link">Book this →</span></div>
+    <div class="service-card fade" data-service="Wig Construction" tabindex="0"><span class="service-icon">🧵</span><h3>Wig Construction</h3><p>Custom frontal and closure wig builds, ready in 3–5 days. Bring your lace and bundles or let Lani source premium hair for you.</p><span class="service-price">Starting at $150</span><span class="service-book-link">Book this →</span></div>
+    <div class="service-card fade" data-service="Natural Hair &amp; Braids" tabindex="0"><span class="service-icon">🌿</span><h3>Natural Hair &amp; Braids</h3><p>Cornrows, wash &amp; style, retouching, and regular or knotless braids in all sizes — midback, waist and hip length.</p><span class="service-price">Starting at $40</span><span class="service-book-link">Book this →</span></div>
+    <div class="service-card fade" data-service="Colour &amp; Customization" tabindex="0"><span class="service-icon">🎨</span><h3>Colour &amp; Customization</h3><p>Lace plucking, bleaching, tinting, root touch-ups, full colouring, highlights, revamping and elastic band application.</p><span class="service-price">Starting at $5</span><span class="service-book-link">Book this →</span></div>
   </div>
 </section>
 
@@ -1625,6 +1639,72 @@ function addTilt(selector, maxDeg = 7) {
 addTilt('.service-card', 7);
 addTilt('.t-card', 5);
 addTilt('.p-card', 5);
+
+/* ── Service card → click-to-book ── */
+// Service cards represent categories; the booking checklist further down groups
+// the same names under .svc-category headers. "Natural Hair & Braids" spans two
+// of those headers (Natural Hair, Braids), so it maps to both.
+const SERVICE_CATEGORY_MAP = {
+  'Ponytails': ['Ponytails'],
+  'Sew-In Services': ['Sew-In Services'],
+  'Wig Installs': ['Wig Installs'],
+  'Wig Construction': ['Wig Construction'],
+  'Natural Hair & Braids': ['Natural Hair', 'Braids'],
+  'Colour & Customization': ['Colour & Customization']
+};
+
+function selectServiceCategory(categoryLabel) {
+  const categories = SERVICE_CATEGORY_MAP[categoryLabel] || [categoryLabel];
+  const container = document.getElementById('serviceCheckboxes');
+  if (!container) return;
+
+  let changed = false;
+  let inMatchingCategory = false;
+  Array.from(container.children).forEach(node => {
+    if (node.classList.contains('svc-category')) {
+      inMatchingCategory = categories.includes(node.textContent.trim());
+    } else if (inMatchingCategory && node.tagName === 'LABEL') {
+      const cb = node.querySelector('input[type="checkbox"]');
+      if (cb && !cb.checked) { cb.checked = true; changed = true; }
+    }
+  });
+
+  if (changed && typeof updateSelectedServices === 'function') {
+    updateSelectedServices();
+  }
+}
+
+function highlightBookingForm() {
+  const wrap = document.getElementById('bookingFormWrap');
+  if (!wrap) return;
+  wrap.classList.remove('glow-pulse');
+  void wrap.offsetWidth; // restart the animation if triggered again quickly
+  wrap.classList.add('glow-pulse');
+  setTimeout(() => wrap.classList.remove('glow-pulse'), 1500);
+}
+
+function bookThisService(card) {
+  const categoryLabel = card.dataset.service;
+  if (categoryLabel) selectServiceCategory(categoryLabel);
+
+  const booking = document.getElementById('booking');
+  if (booking) {
+    const offset = 24;
+    const top = booking.getBoundingClientRect().top + window.pageYOffset - offset;
+    window.scrollTo({ top, behavior: 'smooth' });
+  }
+  highlightBookingForm();
+}
+
+document.querySelectorAll('.service-card').forEach(card => {
+  card.addEventListener('click', () => bookThisService(card));
+  card.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      bookThisService(card);
+    }
+  });
+});
 
 /* ── Button ripple ── */
 document.querySelectorAll('.btn').forEach(btn => {
