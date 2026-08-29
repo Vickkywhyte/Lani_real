@@ -521,6 +521,8 @@
     }
     .service-checkboxes label:hover { background: rgba(184,146,74,.06); color: #fff !important; }
     .service-checkboxes label:last-child { border-bottom: none; }
+    .svc-name { flex: 1; }
+    .svc-price { color: var(--gold-l); font-size: .78rem; font-weight: 600; flex-shrink: 0; }
     .service-checkboxes input[type="checkbox"] {
       appearance: none; -webkit-appearance: none;
       width: 16px; height: 16px; border: 1.5px solid rgba(255,255,255,.25);
@@ -1066,31 +1068,31 @@
             <span class="arrow">▼</span>
           </div>
           <div class="service-checkboxes" id="serviceCheckboxes">
-            <label><input type="checkbox" value="Natural Hair Ponytail" onchange="updateSelectedServices()"> Natural Hair Ponytail</label>
-            <label><input type="checkbox" value="Braided Ponytail" onchange="updateSelectedServices()"> Braided Ponytail</label>
-            <label><input type="checkbox" value="Half Up / Half Down Ponytail" onchange="updateSelectedServices()"> Half Up / Half Down Ponytail</label>
-            <label><input type="checkbox" value="Frontal Ponytail" onchange="updateSelectedServices()"> Frontal Ponytail</label>
-            <label><input type="checkbox" value="Closure Install Sew-In" onchange="updateSelectedServices()"> Closure Install Sew-In</label>
-            <label><input type="checkbox" value="Frontal Install Sew-In" onchange="updateSelectedServices()"> Frontal Install Sew-In</label>
-            <label><input type="checkbox" value="Flip Over Sew-In" onchange="updateSelectedServices()"> Flip Over Sew-In</label>
-            <label><input type="checkbox" value="Tribal Sew-In" onchange="updateSelectedServices()"> Tribal Sew-In</label>
-            <label><input type="checkbox" value="Leave Out Sew-In" onchange="updateSelectedServices()"> Leave Out Sew-In</label>
-            <label><input type="checkbox" value="Sew-In with Bangs" onchange="updateSelectedServices()"> Sew-In with Bangs</label>
-            <label><input type="checkbox" value="Closure Wig Install" onchange="updateSelectedServices()"> Closure Wig Install</label>
-            <label><input type="checkbox" value="Frontal Wig Install" onchange="updateSelectedServices()"> Frontal Wig Install</label>
-            <label><input type="checkbox" value="360 Installation" onchange="updateSelectedServices()"> 360 Installation</label>
-            <label><input type="checkbox" value="Closure Wig Construction" onchange="updateSelectedServices()"> Closure Wig Construction</label>
-            <label><input type="checkbox" value="Frontal Wig Construction" onchange="updateSelectedServices()"> Frontal Wig Construction</label>
-            <label><input type="checkbox" value="Cornrows" onchange="updateSelectedServices()"> Cornrows</label>
-            <label><input type="checkbox" value="Wash & Style" onchange="updateSelectedServices()"> Wash & Style</label>
-            <label><input type="checkbox" value="Lace Refresh & Styling" onchange="updateSelectedServices()"> Lace Refresh & Styling</label>
-            <label><input type="checkbox" value="Retouching Service" onchange="updateSelectedServices()"> Retouching Service</label>
-            <label><input type="checkbox" value="Braids (Regular / Knotless)" onchange="updateSelectedServices()"> Braids (Regular / Knotless)</label>
-            <label><input type="checkbox" value="Wig Customization / Colouring" onchange="updateSelectedServices()"> Wig Customization / Colouring</label>
-            <label><input type="checkbox" value="Traditional Sew-In Package (CA$470)" onchange="updateSelectedServices()"> Traditional Sew-In Package (CA$470)</label>
-            <label><input type="checkbox" value="5×5 Closure Package (CA$650)" onchange="updateSelectedServices()"> 5×5 Closure Package (CA$650)</label>
-            <label><input type="checkbox" value="13×6 Closure Package (CA$850)" onchange="updateSelectedServices()"> 13×6 Closure Package (CA$850)</label>
-            <label><input type="checkbox" value="Other — I'll describe in notes" onchange="updateSelectedServices()"> Other — I'll describe in notes</label>
+            <label><input type="checkbox" value="Natural Hair Ponytail" onchange="updateSelectedServices()"> <span class="svc-name">Natural Hair Ponytail</span><span class="svc-price">$130</span></label>
+            <label><input type="checkbox" value="Braided Ponytail" onchange="updateSelectedServices()"> <span class="svc-name">Braided Ponytail</span><span class="svc-price">$140</span></label>
+            <label><input type="checkbox" value="Half Up / Half Down Ponytail" onchange="updateSelectedServices()"> <span class="svc-name">Half Up / Half Down Ponytail</span><span class="svc-price">$150</span></label>
+            <label><input type="checkbox" value="Frontal Ponytail" onchange="updateSelectedServices()"> <span class="svc-name">Frontal Ponytail</span><span class="svc-price">$160</span></label>
+            <label><input type="checkbox" value="Closure Install Sew-In" onchange="updateSelectedServices()"> <span class="svc-name">Closure Install Sew-In</span><span class="svc-price">$160</span></label>
+            <label><input type="checkbox" value="Frontal Install Sew-In" onchange="updateSelectedServices()"> <span class="svc-name">Frontal Install Sew-In</span><span class="svc-price">$200</span></label>
+            <label><input type="checkbox" value="Flip Over Sew-In" onchange="updateSelectedServices()"> <span class="svc-name">Flip Over Sew-In</span><span class="svc-price">$160</span></label>
+            <label><input type="checkbox" value="Tribal Sew-In" onchange="updateSelectedServices()"> <span class="svc-name">Tribal Sew-In</span><span class="svc-price">$160</span></label>
+            <label><input type="checkbox" value="Leave Out Sew-In" onchange="updateSelectedServices()"> <span class="svc-name">Leave Out Sew-In</span><span class="svc-price">$150</span></label>
+            <label><input type="checkbox" value="Sew-In with Bangs" onchange="updateSelectedServices()"> <span class="svc-name">Sew-In with Bangs</span><span class="svc-price">$150</span></label>
+            <label><input type="checkbox" value="Closure Wig Install" onchange="updateSelectedServices()"> <span class="svc-name">Closure Wig Install</span><span class="svc-price">$150</span></label>
+            <label><input type="checkbox" value="Frontal Wig Install" onchange="updateSelectedServices()"> <span class="svc-name">Frontal Wig Install</span><span class="svc-price">$170</span></label>
+            <label><input type="checkbox" value="360 Installation" onchange="updateSelectedServices()"> <span class="svc-name">360 Installation</span><span class="svc-price">$220</span></label>
+            <label><input type="checkbox" value="Closure Wig Construction" onchange="updateSelectedServices()"> <span class="svc-name">Closure Wig Construction</span><span class="svc-price">$150</span></label>
+            <label><input type="checkbox" value="Frontal Wig Construction" onchange="updateSelectedServices()"> <span class="svc-name">Frontal Wig Construction</span><span class="svc-price">$200</span></label>
+            <label><input type="checkbox" value="Cornrows" onchange="updateSelectedServices()"> <span class="svc-name">Cornrows</span><span class="svc-price">$40</span></label>
+            <label><input type="checkbox" value="Wash & Style" onchange="updateSelectedServices()"> <span class="svc-name">Wash &amp; Style</span><span class="svc-price">$70</span></label>
+            <label><input type="checkbox" value="Lace Refresh & Styling" onchange="updateSelectedServices()"> <span class="svc-name">Lace Refresh &amp; Styling</span><span class="svc-price">$80</span></label>
+            <label><input type="checkbox" value="Retouching Service" onchange="updateSelectedServices()"> <span class="svc-name">Retouching Service</span><span class="svc-price">$140</span></label>
+            <label><input type="checkbox" value="Braids (Regular / Knotless)" onchange="updateSelectedServices()"> <span class="svc-name">Braids (Regular / Knotless)</span><span class="svc-price">from $150</span></label>
+            <label><input type="checkbox" value="Wig Customization / Colouring" onchange="updateSelectedServices()"> <span class="svc-name">Wig Customization / Colouring</span><span class="svc-price">from $5</span></label>
+            <label><input type="checkbox" value="Traditional Sew-In Package" onchange="updateSelectedServices()"> <span class="svc-name">Traditional Sew-In Package</span><span class="svc-price">CA$470</span></label>
+            <label><input type="checkbox" value="5×5 Closure Package" onchange="updateSelectedServices()"> <span class="svc-name">5×5 Closure Package</span><span class="svc-price">CA$650</span></label>
+            <label><input type="checkbox" value="13×6 Closure Package" onchange="updateSelectedServices()"> <span class="svc-name">13×6 Closure Package</span><span class="svc-price">CA$850</span></label>
+            <label><input type="checkbox" value="Other — I'll describe in notes" onchange="updateSelectedServices()"> <span class="svc-name">Other — I'll describe in notes</span></label>
           </div>
           <div class="selected-services-tags" id="selectedServicesTags"></div>
           <input type="hidden" id="selectedServicesInput" name="service" />
@@ -1153,7 +1155,11 @@
 /* ── Supabase Booking System ── */
 const SUPABASE_URL = 'https://roxbhzmdawiaxixeuhob.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJveGJoem1kYXdpYXhpeGV1aG9iIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODgwMTM3MzMsImV4cCI6MjEwMzU4OTczM30.1TpoiTF51x1awmq_sgHPF-UfdVmfE_LOdWBzhyJgurM';
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+// NOTE: named `sb`, not `supabase` — the CDN UMD bundle already exposes a global
+// named `supabase`, and redeclaring that identifier with const throws a
+// SyntaxError ("Identifier 'supabase' has already been declared") that silently
+// kills this entire script block, which is why the dropdown/date/slots all broke.
+const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 const TIME_SLOTS = [
   '9:00 AM', '9:30 AM', '10:00 AM', '10:30 AM',
@@ -1233,7 +1239,7 @@ async function fetchFullyBookedDates() {
     futureDate.setDate(futureDate.getDate() + 90);
     const futureStr = futureDate.toISOString().split('T')[0];
 
-    const { data, error } = await supabase
+    const { data, error } = await sb
       .from('bookings')
       .select('date, time_slot')
       .eq('cancelled', false)
@@ -1269,40 +1275,46 @@ dateInput.min = today.toISOString().split('T')[0];
 // Fetch fully booked dates on load
 fetchFullyBookedDates();
 
+function showDateWarning(message) {
+  const warningEl = document.getElementById('dateFullyBooked');
+  warningEl.textContent = message;
+  warningEl.classList.add('show');
+  document.getElementById('timeSlotsWrap').style.display = 'none';
+  selectedSlot = null;
+  document.getElementById('selectedTimeSlot').value = '';
+}
+
+function hideDateWarning() {
+  document.getElementById('dateFullyBooked').classList.remove('show');
+}
+
 // When date changes, check availability then fetch booked slots
 dateInput.addEventListener('change', async function() {
   const date = this.value;
-  const warningEl = document.getElementById('dateFullyBooked');
 
-  if (!date) return;
+  if (!date) { hideDateWarning(); document.getElementById('timeSlotsWrap').style.display = 'none'; return; }
 
   // Check if it's a Sunday
   const dayOfWeek = new Date(date + 'T12:00:00').getDay();
   if (dayOfWeek === 0) {
-    warningEl.classList.remove('show');
-    document.getElementById('timeSlotsGrid').innerHTML =
-      '<p style="grid-column:1/-1;text-align:center;color:rgba(255,255,255,.4);font-size:.88rem;">Closed on Sundays — please pick another day.</p>';
-    document.getElementById('timeSlotsWrap').style.display = 'block';
+    showDateWarning('Closed on Sundays — please pick another day.');
     return;
   }
 
-  // Check if date is fully booked
+  // Check if date is already known to be fully booked
   if (fullyBookedDates.has(date)) {
-    warningEl.classList.add('show');
-    document.getElementById('timeSlotsWrap').style.display = 'none';
-    selectedSlot = null;
-    document.getElementById('selectedTimeSlot').value = '';
+    showDateWarning('This date is fully booked. Please choose a different day.');
     return;
   }
 
-  warningEl.classList.remove('show');
+  hideDateWarning();
   document.getElementById('timeSlotsWrap').style.display = 'block';
   document.getElementById('timeSlotsGrid').innerHTML = '<p class="slots-loading" style="grid-column:1/-1;">Loading available times…</p>';
   selectedSlot = null;
   document.getElementById('selectedTimeSlot').value = '';
 
   try {
-    const { data, error } = await supabase
+    const { data, error } = await sb
       .from('bookings')
       .select('time_slot')
       .eq('date', date)
@@ -1310,14 +1322,16 @@ dateInput.addEventListener('change', async function() {
 
     if (error) throw error;
     bookedSlots = data.map(b => b.time_slot);
-
-    // Update fully-booked set in real time
-    if (bookedSlots.length >= TOTAL_SLOTS) {
-      fullyBookedDates.add(date);
-    }
   } catch (err) {
     console.error('Error fetching bookings:', err);
     bookedSlots = [];
+  }
+
+  // All 16 slots taken — hide the grid and show the fully-booked warning
+  if (bookedSlots.length >= TOTAL_SLOTS) {
+    fullyBookedDates.add(date);
+    showDateWarning('This date is fully booked. Please choose a different day.');
+    return;
   }
 
   renderTimeSlots();
@@ -1327,7 +1341,6 @@ function renderTimeSlots() {
   const grid = document.getElementById('timeSlotsGrid');
   grid.innerHTML = '';
 
-  let availableCount = 0;
   TIME_SLOTS.forEach(slot => {
     const btn = document.createElement('button');
     btn.type = 'button';
@@ -1339,18 +1352,11 @@ function renderTimeSlots() {
       btn.disabled = true;
       btn.title = 'This time is already booked';
     } else {
-      availableCount++;
       btn.addEventListener('click', () => selectSlot(slot, btn));
     }
 
     grid.appendChild(btn);
   });
-
-  // If all slots turned out booked after fetching
-  if (availableCount === 0) {
-    grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:#ff6b6b;font-size:.88rem;">All times are booked for this date. Please choose another day.</p>';
-    fullyBookedDates.add(dateInput.value);
-  }
 }
 
 function selectSlot(slot, btn) {
@@ -1383,7 +1389,7 @@ async function handleBooking(e) {
   const customerName = form.first_name.value + ' ' + form.last_name.value;
 
   try {
-    const { data, error } = await supabase
+    const { data, error } = await sb
       .from('bookings')
       .insert([{
         customer_name: customerName,
@@ -1412,10 +1418,11 @@ async function handleBooking(e) {
     const details = document.getElementById('bookingDetails');
     const dateObj = new Date(form.preferred_date.value + 'T12:00:00');
     const dateStr = dateObj.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    const esc = s => { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; };
 
     details.innerHTML =
-      '<div class="bd-row"><span class="bd-label">Name</span><span class="bd-value">' + customerName + '</span></div>' +
-      '<div class="bd-row"><span class="bd-label">Service(s)</span><span class="bd-value">' + selectedServices + '</span></div>' +
+      '<div class="bd-row"><span class="bd-label">Name</span><span class="bd-value">' + esc(customerName) + '</span></div>' +
+      '<div class="bd-row"><span class="bd-label">Service(s)</span><span class="bd-value">' + esc(selectedServices) + '</span></div>' +
       '<div class="bd-row"><span class="bd-label">Date</span><span class="bd-value">' + dateStr + '</span></div>' +
       '<div class="bd-row"><span class="bd-label">Time</span><span class="bd-value">' + selectedSlot + '</span></div>';
     document.getElementById('bookingSuccess').classList.add('show');
