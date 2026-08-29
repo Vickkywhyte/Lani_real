@@ -487,33 +487,132 @@
     .form-group select option { background: #1a1a1a; }
     .form-group textarea { resize: vertical; min-height: 90px; }
     .form-submit { margin-top: 1.4rem; width: 100%; padding: 1rem; font-size: .88rem; }
-    .form-submit:disabled { opacity: .55; cursor: not-allowed; }
+
+    /* ── MULTI-SELECT SERVICES ── */
+    .service-select-toggle {
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12);
+      border-radius: 2px; padding: .75rem 1rem; color: rgba(255,255,255,.5);
+      font-size: .93rem; font-family: var(--sans); cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center;
+      transition: border-color .25s, background .25s, box-shadow .25s;
+    }
+    .service-select-toggle:hover,
+    .service-select-toggle.active {
+      border-color: var(--gold); background: rgba(184,146,74,.06);
+      box-shadow: 0 0 0 3px rgba(184,146,74,.1);
+    }
+    .service-select-toggle .arrow { transition: transform .3s; font-size: .7rem; }
+    .service-select-toggle.active .arrow { transform: rotate(180deg); }
+    .service-select-toggle.has-selection { color: #fff; }
+
+    .service-checkboxes {
+      display: none; flex-direction: column; gap: 0;
+      background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.09);
+      border-top: none; border-radius: 0 0 2px 2px; max-height: 260px;
+      overflow-y: auto; scrollbar-width: thin;
+    }
+    .service-checkboxes.open { display: flex; }
+    .service-checkboxes label {
+      display: flex; align-items: center; gap: .65rem; padding: .6rem 1rem;
+      font-size: .88rem !important; color: rgba(255,255,255,.7) !important;
+      letter-spacing: 0 !important; text-transform: none !important;
+      cursor: pointer; transition: background .2s, color .2s;
+      border-bottom: 1px solid rgba(255,255,255,.04);
+    }
+    .service-checkboxes label:hover { background: rgba(184,146,74,.06); color: #fff !important; }
+    .service-checkboxes label:last-child { border-bottom: none; }
+    .service-checkboxes input[type="checkbox"] {
+      appearance: none; -webkit-appearance: none;
+      width: 16px; height: 16px; border: 1.5px solid rgba(255,255,255,.25);
+      border-radius: 2px; flex-shrink: 0; cursor: pointer;
+      position: relative; transition: border-color .2s, background .2s;
+      background: transparent; padding: 0;
+    }
+    .service-checkboxes input[type="checkbox"]:checked {
+      background: var(--gold); border-color: var(--gold);
+    }
+    .service-checkboxes input[type="checkbox"]:checked::after {
+      content: '✓'; position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--dark); font-size: .65rem; font-weight: 700;
+    }
+    .selected-services-tags {
+      display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .45rem;
+    }
+    .service-tag {
+      background: rgba(184,146,74,.15); border: 1px solid rgba(184,146,74,.3);
+      color: var(--gold-l); font-size: .72rem; padding: .2rem .55rem;
+      border-radius: 2px; display: flex; align-items: center; gap: .35rem;
+    }
+    .service-tag .remove-tag {
+      cursor: pointer; font-size: .8rem; color: rgba(255,255,255,.4);
+      transition: color .2s; line-height: 1;
+    }
+    .service-tag .remove-tag:hover { color: #fff; }
+
+    /* ── FULLY BOOKED DATE WARNING ── */
+    .date-fully-booked {
+      background: rgba(220,53,69,.1); border: 1px solid rgba(220,53,69,.3);
+      color: #ff6b6b; font-size: .84rem; padding: .65rem 1rem;
+      border-radius: 2px; margin-top: .4rem; display: none;
+      animation: fadeUp .3s var(--ease-out);
+    }
+    .date-fully-booked.show { display: block; }
 
     /* ── TIME SLOTS ── */
-    .time-slots-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: .5rem;
-    }
-    .time-slots-empty {
-      font-size: .82rem; color: rgba(255,255,255,.45); font-style: italic; padding: .4rem 0;
-    }
+    .time-slots-label { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.5); margin-bottom: .5rem; }
+    .time-slots-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .6rem; margin-bottom: 1rem; }
     .time-slot-btn {
-      padding: .6rem .3rem; font-size: .78rem; font-family: var(--sans);
-      border-radius: 2px; border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.06); color: #fff; cursor: pointer;
-      transition: border-color .2s, background .2s, color .2s, transform .15s;
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12);
+      border-radius: 2px; padding: .65rem .5rem; color: #fff;
+      font-size: .84rem; font-family: var(--sans); cursor: pointer;
+      transition: all .25s var(--ease-out); text-align: center;
     }
-    .time-slot-btn:hover:not(:disabled) { border-color: var(--gold); background: rgba(184,146,74,.14); transform: translateY(-1px); }
-    .time-slot-btn.selected { background: var(--gold); border-color: var(--gold); color: var(--dark); font-weight: 700; }
-    .time-slot-btn:disabled {
-      opacity: .32; cursor: not-allowed; text-decoration: line-through;
-      background: rgba(255,255,255,.02); color: rgba(255,255,255,.5);
+    .time-slot-btn:hover:not(.booked):not(.selected) {
+      border-color: var(--gold); background: rgba(184,146,74,.08);
     }
-    .booking-msg {
-      display: flex; align-items: flex-start; gap: .7rem;
-      margin-top: 1.2rem; padding: 1rem 1.1rem; border-radius: 2px; font-size: .87rem; line-height: 1.55;
+    .time-slot-btn.selected {
+      background: var(--gold); color: var(--dark); border-color: var(--gold);
+      font-weight: 600; transform: scale(1.03);
+      box-shadow: 0 4px 15px rgba(184,146,74,.35);
     }
-    .booking-msg.success { background: rgba(184,146,74,.12); border: 1px solid rgba(184,146,74,.35); color: var(--gold-l); }
-    .booking-msg.error { background: rgba(200,70,60,.1); border: 1px solid rgba(200,70,60,.35); color: #e8998f; }
+    .time-slot-btn.booked {
+      background: rgba(255,255,255,.02); border-color: rgba(255,255,255,.05);
+      color: rgba(255,255,255,.2); cursor: not-allowed;
+      text-decoration: line-through; opacity: .5;
+    }
+    .slots-loading { text-align: center; color: rgba(255,255,255,.4); font-size: .84rem; padding: 1rem 0; }
+    .slots-hint { font-size: .72rem; color: rgba(255,255,255,.35); margin-top: .3rem; text-align: center; }
+
+    /* ── BOOKING CONFIRMATION ── */
+    .booking-success {
+      display: none; text-align: center; padding: 2rem 1rem;
+    }
+    .booking-success.show { display: block; }
+    .success-icon {
+      width: 64px; height: 64px; border-radius: 50%; margin: 0 auto 1.2rem;
+      background: rgba(184,146,74,.15); border: 2px solid var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem; animation: successPop .5s var(--ease-snap);
+    }
+    @keyframes successPop {
+      0% { transform: scale(0); opacity: 0; }
+      60% { transform: scale(1.15); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .booking-success h3 { font-family: var(--serif); font-size: 1.3rem; color: #fff; margin-bottom: .6rem; }
+    .booking-success p { color: rgba(255,255,255,.6); font-size: .88rem; line-height: 1.6; }
+    .booking-details {
+      background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.09);
+      border-radius: 3px; padding: 1.2rem; margin: 1.2rem 0; text-align: left;
+    }
+    .booking-details .bd-row {
+      display: flex; justify-content: space-between; padding: .35rem 0;
+      border-bottom: 1px solid rgba(255,255,255,.06); font-size: .84rem;
+    }
+    .booking-details .bd-row:last-child { border-bottom: none; }
+    .booking-details .bd-label { color: rgba(255,255,255,.45); }
+    .booking-details .bd-value { color: var(--gold-l); font-weight: 600; }
 
     /* ── FOOTER ── */
     footer { background: #080808; color: rgba(255,255,255,.4); padding: 3.5rem 5%; text-align: center; }
@@ -584,6 +683,7 @@
       .about-inner { grid-template-columns: 1fr; gap: 3rem; }
       .about-img-wrap { max-width: 380px; margin: 0 auto; overflow: visible; }
       .booking-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .time-slots-grid { grid-template-columns: repeat(3, 1fr); }
       .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(3, 220px); }
       .gallery-item:nth-child(1) { grid-column: 1 / -1; grid-row: 1; }
       .gallery-item:nth-child(4) { grid-column: 1 / -1; }
@@ -948,57 +1048,80 @@
         </div>
       </div>
     </div>
-    <form class="booking-form fade" id="bookingForm">
+
+    <!-- Booking Form -->
+    <div class="booking-form fade" id="bookingFormWrap">
       <h3>Request an Appointment</h3>
-      <div class="form-row">
-        <div class="form-group"><label for="fname">First Name</label><input type="text" id="fname" name="first_name" placeholder="Jane" required /></div>
-        <div class="form-group"><label for="lname">Last Name</label><input type="text" id="lname" name="last_name" placeholder="Doe" required /></div>
-      </div>
-      <div class="form-group"><label for="email">Email</label><input type="email" id="email" name="email" placeholder="jane@example.com" required /></div>
-      <div class="form-group"><label for="phone">Phone</label><input type="tel" id="phone" name="phone" placeholder="(905) 555-0100" required /></div>
-      <div class="form-group">
-        <label for="service">Service</label>
-        <select id="service" name="service" required>
-          <option value="">Select a service…</option>
-          <option>Natural Hair Ponytail</option>
-          <option>Braided Ponytail</option>
-          <option>Half Up / Half Down Ponytail</option>
-          <option>Frontal Ponytail</option>
-          <option>Closure Install Sew-In</option>
-          <option>Frontal Install Sew-In</option>
-          <option>Flip Over Sew-In</option>
-          <option>Tribal Sew-In</option>
-          <option>Leave Out Sew-In</option>
-          <option>Sew-In with Bangs</option>
-          <option>Closure Wig Install</option>
-          <option>Frontal Wig Install</option>
-          <option>360 Installation</option>
-          <option>Closure Wig Construction</option>
-          <option>Frontal Wig Construction</option>
-          <option>Cornrows</option>
-          <option>Wash &amp; Style</option>
-          <option>Lace Refresh &amp; Styling</option>
-          <option>Retouching Service</option>
-          <option>Braids (Regular / Knotless)</option>
-          <option>Wig Customization / Colouring</option>
-          <option>Traditional Sew-In Package (CA$470)</option>
-          <option>5×5 Closure Package (CA$650)</option>
-          <option>13×6 Closure Package (CA$850)</option>
-          <option>Other — I'll describe in notes</option>
-        </select>
-      </div>
-      <div class="form-group"><label for="appt-date">Preferred Date</label><input type="date" id="appt-date" name="preferred_date" required /></div>
-      <div class="form-group">
-        <label for="appt-time">Preferred Time</label>
-        <div class="time-slots-grid" id="timeSlots">
-          <span class="time-slots-empty">Pick a date above to see available times…</span>
+      <form id="bookingForm" onsubmit="return handleBooking(event)">
+        <div class="form-row">
+          <div class="form-group"><label for="fname">First Name</label><input type="text" id="fname" name="first_name" placeholder="Jane" required /></div>
+          <div class="form-group"><label for="lname">Last Name</label><input type="text" id="lname" name="last_name" placeholder="Doe" required /></div>
         </div>
-        <input type="hidden" id="appt-time" name="preferred_time" required />
+        <div class="form-group"><label for="email">Email</label><input type="email" id="email" name="email" placeholder="jane@example.com" required /></div>
+        <div class="form-group"><label for="phone">Phone</label><input type="tel" id="phone" name="phone" placeholder="(905) 555-0100" required /></div>
+        <div class="form-group" id="serviceGroup">
+          <label>Services <span style="font-size:.65rem;opacity:.6;text-transform:none;letter-spacing:0">(select one or more)</span></label>
+          <div class="service-select-toggle" id="serviceToggle" onclick="toggleServiceDropdown()">
+            <span id="serviceToggleText">Select services…</span>
+            <span class="arrow">▼</span>
+          </div>
+          <div class="service-checkboxes" id="serviceCheckboxes">
+            <label><input type="checkbox" value="Natural Hair Ponytail" onchange="updateSelectedServices()"> Natural Hair Ponytail</label>
+            <label><input type="checkbox" value="Braided Ponytail" onchange="updateSelectedServices()"> Braided Ponytail</label>
+            <label><input type="checkbox" value="Half Up / Half Down Ponytail" onchange="updateSelectedServices()"> Half Up / Half Down Ponytail</label>
+            <label><input type="checkbox" value="Frontal Ponytail" onchange="updateSelectedServices()"> Frontal Ponytail</label>
+            <label><input type="checkbox" value="Closure Install Sew-In" onchange="updateSelectedServices()"> Closure Install Sew-In</label>
+            <label><input type="checkbox" value="Frontal Install Sew-In" onchange="updateSelectedServices()"> Frontal Install Sew-In</label>
+            <label><input type="checkbox" value="Flip Over Sew-In" onchange="updateSelectedServices()"> Flip Over Sew-In</label>
+            <label><input type="checkbox" value="Tribal Sew-In" onchange="updateSelectedServices()"> Tribal Sew-In</label>
+            <label><input type="checkbox" value="Leave Out Sew-In" onchange="updateSelectedServices()"> Leave Out Sew-In</label>
+            <label><input type="checkbox" value="Sew-In with Bangs" onchange="updateSelectedServices()"> Sew-In with Bangs</label>
+            <label><input type="checkbox" value="Closure Wig Install" onchange="updateSelectedServices()"> Closure Wig Install</label>
+            <label><input type="checkbox" value="Frontal Wig Install" onchange="updateSelectedServices()"> Frontal Wig Install</label>
+            <label><input type="checkbox" value="360 Installation" onchange="updateSelectedServices()"> 360 Installation</label>
+            <label><input type="checkbox" value="Closure Wig Construction" onchange="updateSelectedServices()"> Closure Wig Construction</label>
+            <label><input type="checkbox" value="Frontal Wig Construction" onchange="updateSelectedServices()"> Frontal Wig Construction</label>
+            <label><input type="checkbox" value="Cornrows" onchange="updateSelectedServices()"> Cornrows</label>
+            <label><input type="checkbox" value="Wash & Style" onchange="updateSelectedServices()"> Wash & Style</label>
+            <label><input type="checkbox" value="Lace Refresh & Styling" onchange="updateSelectedServices()"> Lace Refresh & Styling</label>
+            <label><input type="checkbox" value="Retouching Service" onchange="updateSelectedServices()"> Retouching Service</label>
+            <label><input type="checkbox" value="Braids (Regular / Knotless)" onchange="updateSelectedServices()"> Braids (Regular / Knotless)</label>
+            <label><input type="checkbox" value="Wig Customization / Colouring" onchange="updateSelectedServices()"> Wig Customization / Colouring</label>
+            <label><input type="checkbox" value="Traditional Sew-In Package (CA$470)" onchange="updateSelectedServices()"> Traditional Sew-In Package (CA$470)</label>
+            <label><input type="checkbox" value="5×5 Closure Package (CA$650)" onchange="updateSelectedServices()"> 5×5 Closure Package (CA$650)</label>
+            <label><input type="checkbox" value="13×6 Closure Package (CA$850)" onchange="updateSelectedServices()"> 13×6 Closure Package (CA$850)</label>
+            <label><input type="checkbox" value="Other — I'll describe in notes" onchange="updateSelectedServices()"> Other — I'll describe in notes</label>
+          </div>
+          <div class="selected-services-tags" id="selectedServicesTags"></div>
+          <input type="hidden" id="selectedServicesInput" name="service" />
+        </div>
+        <div class="form-group">
+          <label for="appt-date">Preferred Date</label>
+          <input type="date" id="appt-date" name="preferred_date" required />
+          <div class="date-fully-booked" id="dateFullyBooked">This date is fully booked. Please choose a different day.</div>
+        </div>
+
+        <!-- Time Slots -->
+        <div class="form-group" id="timeSlotsWrap" style="display:none;">
+          <label class="time-slots-label">Select a Time</label>
+          <div class="time-slots-grid" id="timeSlotsGrid"></div>
+          <p class="slots-hint">Greyed-out slots are already booked</p>
+        </div>
+        <input type="hidden" id="selectedTimeSlot" name="preferred_time" />
+
+        <div class="form-group"><label for="notes">Notes (optional)</label><textarea id="notes" name="notes" placeholder="Tell Lani about your hair goals or any special requests…"></textarea></div>
+        <button type="submit" class="btn btn-gold form-submit" id="bookBtn">Book Appointment</button>
+      </form>
+
+      <!-- Success Message -->
+      <div class="booking-success" id="bookingSuccess">
+        <div class="success-icon">✓</div>
+        <h3>Booking Confirmed!</h3>
+        <p>Your appointment has been reserved. Lani will reach out to confirm the details.</p>
+        <div class="booking-details" id="bookingDetails"></div>
+        <button class="btn btn-gold form-submit" onclick="resetBookingForm()" style="margin-top:1rem;">Book Another</button>
       </div>
-      <div class="form-group"><label for="notes">Notes (optional)</label><textarea id="notes" name="notes" placeholder="Tell Lani about your hair goals or any special requests…"></textarea></div>
-      <button type="submit" class="btn btn-gold form-submit" id="bookingSubmit">Send Request</button>
-      <div id="bookingMsg"></div>
-    </form>
+    </div>
   </div>
 </section>
 
@@ -1026,6 +1149,310 @@
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+/* ── Supabase Booking System ── */
+const SUPABASE_URL = 'https://roxbhzmdawiaxixeuhob.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJveGJoem1kYXdpYXhpeGV1aG9iIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODgwMTM3MzMsImV4cCI6MjEwMzU4OTczM30.1TpoiTF51x1awmq_sgHPF-UfdVmfE_LOdWBzhyJgurM';
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+const TIME_SLOTS = [
+  '9:00 AM', '9:30 AM', '10:00 AM', '10:30 AM',
+  '11:00 AM', '11:30 AM', '12:00 PM', '12:30 PM',
+  '1:00 PM', '1:30 PM', '2:00 PM', '2:30 PM',
+  '3:00 PM', '3:30 PM', '4:00 PM', '4:30 PM'
+];
+const TOTAL_SLOTS = TIME_SLOTS.length; // 16
+
+let selectedSlot = null;
+let bookedSlots = [];
+let fullyBookedDates = new Set();
+
+/* ── Multi-Service Selection ── */
+function toggleServiceDropdown() {
+  const checkboxes = document.getElementById('serviceCheckboxes');
+  const toggle = document.getElementById('serviceToggle');
+  const isOpen = checkboxes.classList.toggle('open');
+  toggle.classList.toggle('active', isOpen);
+}
+
+function updateSelectedServices() {
+  const checkboxes = document.querySelectorAll('#serviceCheckboxes input[type="checkbox"]');
+  const selected = [];
+  checkboxes.forEach(cb => { if (cb.checked) selected.push(cb.value); });
+
+  // Update hidden input
+  document.getElementById('selectedServicesInput').value = selected.join(', ');
+
+  // Update toggle text
+  const toggle = document.getElementById('serviceToggle');
+  const toggleText = document.getElementById('serviceToggleText');
+  if (selected.length === 0) {
+    toggleText.textContent = 'Select services…';
+    toggle.classList.remove('has-selection');
+  } else if (selected.length === 1) {
+    toggleText.textContent = selected[0];
+    toggle.classList.add('has-selection');
+  } else {
+    toggleText.textContent = selected.length + ' services selected';
+    toggle.classList.add('has-selection');
+  }
+
+  // Update tags
+  const tagsContainer = document.getElementById('selectedServicesTags');
+  tagsContainer.innerHTML = '';
+  selected.forEach(svc => {
+    const tag = document.createElement('span');
+    tag.className = 'service-tag';
+    // Shorten long names for the tag
+    const short = svc.length > 30 ? svc.substring(0, 28) + '…' : svc;
+    tag.innerHTML = short + ' <span class="remove-tag" onclick="removeService(\'' + svc.replace(/'/g, "\\'") + '\')">&times;</span>';
+    tagsContainer.appendChild(tag);
+  });
+}
+
+function removeService(value) {
+  const cb = document.querySelector('#serviceCheckboxes input[value="' + value + '"]');
+  if (cb) { cb.checked = false; updateSelectedServices(); }
+}
+
+// Close dropdown when clicking outside
+document.addEventListener('click', function(e) {
+  const group = document.getElementById('serviceGroup');
+  if (group && !group.contains(e.target)) {
+    document.getElementById('serviceCheckboxes').classList.remove('open');
+    document.getElementById('serviceToggle').classList.remove('active');
+  }
+});
+
+/* ── Fully-Booked Date Detection ── */
+async function fetchFullyBookedDates() {
+  try {
+    // Fetch booking counts grouped by date for the next 90 days
+    const todayStr = new Date().toISOString().split('T')[0];
+    const futureDate = new Date();
+    futureDate.setDate(futureDate.getDate() + 90);
+    const futureStr = futureDate.toISOString().split('T')[0];
+
+    const { data, error } = await supabase
+      .from('bookings')
+      .select('date, time_slot')
+      .eq('cancelled', false)
+      .gte('date', todayStr)
+      .lte('date', futureStr);
+
+    if (error) throw error;
+
+    // Count bookings per date
+    const dateCounts = {};
+    data.forEach(b => {
+      dateCounts[b.date] = (dateCounts[b.date] || new Set());
+      dateCounts[b.date].add(b.time_slot);
+    });
+
+    // Find dates where all slots are booked
+    fullyBookedDates = new Set();
+    for (const [date, slots] of Object.entries(dateCounts)) {
+      if (slots.size >= TOTAL_SLOTS) {
+        fullyBookedDates.add(date);
+      }
+    }
+  } catch (err) {
+    console.error('Error fetching fully booked dates:', err);
+  }
+}
+
+// Set min date to today
+const dateInput = document.getElementById('appt-date');
+const today = new Date();
+dateInput.min = today.toISOString().split('T')[0];
+
+// Fetch fully booked dates on load
+fetchFullyBookedDates();
+
+// When date changes, check availability then fetch booked slots
+dateInput.addEventListener('change', async function() {
+  const date = this.value;
+  const warningEl = document.getElementById('dateFullyBooked');
+
+  if (!date) return;
+
+  // Check if it's a Sunday
+  const dayOfWeek = new Date(date + 'T12:00:00').getDay();
+  if (dayOfWeek === 0) {
+    warningEl.classList.remove('show');
+    document.getElementById('timeSlotsGrid').innerHTML =
+      '<p style="grid-column:1/-1;text-align:center;color:rgba(255,255,255,.4);font-size:.88rem;">Closed on Sundays — please pick another day.</p>';
+    document.getElementById('timeSlotsWrap').style.display = 'block';
+    return;
+  }
+
+  // Check if date is fully booked
+  if (fullyBookedDates.has(date)) {
+    warningEl.classList.add('show');
+    document.getElementById('timeSlotsWrap').style.display = 'none';
+    selectedSlot = null;
+    document.getElementById('selectedTimeSlot').value = '';
+    return;
+  }
+
+  warningEl.classList.remove('show');
+  document.getElementById('timeSlotsWrap').style.display = 'block';
+  document.getElementById('timeSlotsGrid').innerHTML = '<p class="slots-loading" style="grid-column:1/-1;">Loading available times…</p>';
+  selectedSlot = null;
+  document.getElementById('selectedTimeSlot').value = '';
+
+  try {
+    const { data, error } = await supabase
+      .from('bookings')
+      .select('time_slot')
+      .eq('date', date)
+      .eq('cancelled', false);
+
+    if (error) throw error;
+    bookedSlots = data.map(b => b.time_slot);
+
+    // Update fully-booked set in real time
+    if (bookedSlots.length >= TOTAL_SLOTS) {
+      fullyBookedDates.add(date);
+    }
+  } catch (err) {
+    console.error('Error fetching bookings:', err);
+    bookedSlots = [];
+  }
+
+  renderTimeSlots();
+});
+
+function renderTimeSlots() {
+  const grid = document.getElementById('timeSlotsGrid');
+  grid.innerHTML = '';
+
+  let availableCount = 0;
+  TIME_SLOTS.forEach(slot => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'time-slot-btn';
+    btn.textContent = slot;
+
+    if (bookedSlots.includes(slot)) {
+      btn.classList.add('booked');
+      btn.disabled = true;
+      btn.title = 'This time is already booked';
+    } else {
+      availableCount++;
+      btn.addEventListener('click', () => selectSlot(slot, btn));
+    }
+
+    grid.appendChild(btn);
+  });
+
+  // If all slots turned out booked after fetching
+  if (availableCount === 0) {
+    grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:#ff6b6b;font-size:.88rem;">All times are booked for this date. Please choose another day.</p>';
+    fullyBookedDates.add(dateInput.value);
+  }
+}
+
+function selectSlot(slot, btn) {
+  document.querySelectorAll('.time-slot-btn.selected').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  selectedSlot = slot;
+  document.getElementById('selectedTimeSlot').value = slot;
+}
+
+async function handleBooking(e) {
+  e.preventDefault();
+
+  const selectedServices = document.getElementById('selectedServicesInput').value;
+  if (!selectedServices) {
+    alert('Please select at least one service.');
+    return false;
+  }
+
+  if (!selectedSlot) {
+    alert('Please select a time slot.');
+    return false;
+  }
+
+  const form = document.getElementById('bookingForm');
+  const btn = document.getElementById('bookBtn');
+  const originalText = btn.textContent;
+  btn.textContent = 'Booking…';
+  btn.disabled = true;
+
+  const customerName = form.first_name.value + ' ' + form.last_name.value;
+
+  try {
+    const { data, error } = await supabase
+      .from('bookings')
+      .insert([{
+        customer_name: customerName,
+        customer_email: form.email.value,
+        customer_phone: form.phone.value,
+        service: selectedServices,
+        date: form.preferred_date.value,
+        time_slot: selectedSlot
+      }])
+      .select();
+
+    if (error) {
+      if (error.code === '23505') {
+        alert('Sorry, that time slot was just booked by someone else. Please choose another time.');
+        dateInput.dispatchEvent(new Event('change'));
+      } else {
+        throw error;
+      }
+      btn.textContent = originalText;
+      btn.disabled = false;
+      return false;
+    }
+
+    // Show success
+    form.style.display = 'none';
+    const details = document.getElementById('bookingDetails');
+    const dateObj = new Date(form.preferred_date.value + 'T12:00:00');
+    const dateStr = dateObj.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+
+    details.innerHTML =
+      '<div class="bd-row"><span class="bd-label">Name</span><span class="bd-value">' + customerName + '</span></div>' +
+      '<div class="bd-row"><span class="bd-label">Service(s)</span><span class="bd-value">' + selectedServices + '</span></div>' +
+      '<div class="bd-row"><span class="bd-label">Date</span><span class="bd-value">' + dateStr + '</span></div>' +
+      '<div class="bd-row"><span class="bd-label">Time</span><span class="bd-value">' + selectedSlot + '</span></div>';
+    document.getElementById('bookingSuccess').classList.add('show');
+
+    // Refresh fully-booked dates cache
+    fetchFullyBookedDates();
+
+  } catch (err) {
+    console.error('Booking error:', err);
+    alert('Something went wrong. Please try again or call us at 416-473-4785.');
+    btn.textContent = originalText;
+    btn.disabled = false;
+  }
+
+  return false;
+}
+
+function resetBookingForm() {
+  const form = document.getElementById('bookingForm');
+  form.reset();
+  form.style.display = 'block';
+  document.getElementById('bookingSuccess').classList.remove('show');
+  document.getElementById('timeSlotsWrap').style.display = 'none';
+  document.getElementById('selectedTimeSlot').value = '';
+  document.getElementById('dateFullyBooked').classList.remove('show');
+  selectedSlot = null;
+  // Reset multi-select
+  document.querySelectorAll('#serviceCheckboxes input[type="checkbox"]').forEach(cb => cb.checked = false);
+  document.getElementById('selectedServicesInput').value = '';
+  document.getElementById('serviceToggleText').textContent = 'Select services…';
+  document.getElementById('serviceToggle').classList.remove('has-selection');
+  document.getElementById('selectedServicesTags').innerHTML = '';
+  document.getElementById('bookBtn').textContent = 'Book Appointment';
+  document.getElementById('bookBtn').disabled = false;
+}
+</script>
+
 <script>
 /* ── Scroll progress bar ── */
 const progress = document.getElementById('progress');
@@ -1179,149 +1606,6 @@ const counterObs = new IntersectionObserver(entries => {
   }
 }, { threshold: 0.5 });
 if (badgeNum) counterObs.observe(badgeNum);
-
-/* ── Booking: Supabase-backed availability + double-booking prevention ── */
-const SUPABASE_URL      = 'https://roxbhzmdawiaxixeuhob.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJveGJoem1kYXdpYXhpeGV1aG9iIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODgwMTM3MzMsImV4cCI6MjEwMzU4OTczM30.1TpoiTF51x1awmq_sgHPF-UfdVmfE_LOdWBzhyJgurM';
-const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-function escapeHtml(str) {
-  const d = document.createElement('div');
-  d.textContent = str;
-  return d.innerHTML;
-}
-
-function buildTimeSlots() {
-  const slots = [];
-  for (let h = 9; h < 17; h++) {
-    for (const m of [0, 30]) {
-      const value  = `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
-      const hour12 = h % 12 === 0 ? 12 : h % 12;
-      const ampm   = h < 12 ? 'AM' : 'PM';
-      const label  = `${hour12}:${String(m).padStart(2, '0')} ${ampm}`;
-      slots.push({ value, label });
-    }
-  }
-  return slots;
-}
-const TIME_SLOTS = buildTimeSlots();
-
-const dateInput   = document.getElementById('appt-date');
-const slotsWrap   = document.getElementById('timeSlots');
-const timeHidden  = document.getElementById('appt-time');
-const bookingForm = document.getElementById('bookingForm');
-const bookingMsg  = document.getElementById('bookingMsg');
-const submitBtn   = document.getElementById('bookingSubmit');
-
-if (dateInput) dateInput.min = new Date().toISOString().slice(0, 10);
-
-function clearBookingMsg() { if (bookingMsg) bookingMsg.innerHTML = ''; }
-function showBookingMsg(type, html) {
-  if (!bookingMsg) return;
-  bookingMsg.innerHTML = `<div class="booking-msg ${type}"><span>${type === 'success' ? '✓' : '⚠'}</span><div>${html}</div></div>`;
-}
-function resetSlotsPlaceholder() {
-  slotsWrap.innerHTML = '<span class="time-slots-empty">Pick a date above to see available times…</span>';
-  timeHidden.value = '';
-}
-
-async function loadSlotsForDate(dateStr) {
-  slotsWrap.innerHTML = '<span class="time-slots-empty">Loading available times…</span>';
-  timeHidden.value = '';
-
-  const { data, error } = await sb
-    .from('bookings')
-    .select('time_slot')
-    .eq('date', dateStr)
-    .eq('cancelled', false);
-
-  if (error) {
-    slotsWrap.innerHTML = '<span class="time-slots-empty">Couldn’t load availability — please try again.</span>';
-    return;
-  }
-
-  const booked = new Set((data || []).map(b => b.time_slot));
-  slotsWrap.innerHTML = '';
-  TIME_SLOTS.forEach(slot => {
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'time-slot-btn';
-    btn.textContent = slot.label;
-    if (booked.has(slot.value)) {
-      btn.disabled = true;
-    } else {
-      btn.addEventListener('click', () => {
-        slotsWrap.querySelectorAll('.time-slot-btn.selected').forEach(b => b.classList.remove('selected'));
-        btn.classList.add('selected');
-        timeHidden.value = slot.value;
-      });
-    }
-    slotsWrap.appendChild(btn);
-  });
-}
-
-if (dateInput) {
-  dateInput.addEventListener('change', () => {
-    clearBookingMsg();
-    if (dateInput.value) {
-      loadSlotsForDate(dateInput.value);
-    } else {
-      resetSlotsPlaceholder();
-    }
-  });
-}
-
-if (bookingForm) {
-  bookingForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    clearBookingMsg();
-
-    if (!timeHidden.value) {
-      showBookingMsg('error', 'Please select an available time slot.');
-      return;
-    }
-
-    const fname   = document.getElementById('fname').value.trim();
-    const lname   = document.getElementById('lname').value.trim();
-    const email   = document.getElementById('email').value.trim();
-    const phone   = document.getElementById('phone').value.trim();
-    const service = document.getElementById('service').value;
-    const date    = dateInput.value;
-    const time    = timeHidden.value;
-
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Booking…';
-
-    const { error } = await sb.from('bookings').insert({
-      customer_name: `${fname} ${lname}`.trim(),
-      customer_email: email,
-      customer_phone: phone,
-      service: service,
-      date: date,
-      time_slot: time,
-      cancelled: false
-    });
-
-    submitBtn.disabled = false;
-    submitBtn.textContent = 'Send Request';
-
-    if (error) {
-      if (error.code === '23505') {
-        showBookingMsg('error', 'Sorry — that time slot was just booked by someone else. Please pick another available time.');
-        loadSlotsForDate(date);
-      } else {
-        showBookingMsg('error', 'Something went wrong sending your request. Please try again or call us at 416-473-4785.');
-      }
-      return;
-    }
-
-    const prettyDate = new Date(date + 'T00:00:00').toLocaleDateString('en-CA', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-    const label = (TIME_SLOTS.find(s => s.value === time) || {}).label || time;
-    showBookingMsg('success', `Thank you, ${escapeHtml(fname)}! Your request for <strong>${escapeHtml(service)}</strong> on <strong>${prettyDate}</strong> at <strong>${label}</strong> has been received. We'll confirm with you shortly.`);
-    bookingForm.reset();
-    resetSlotsPlaceholder();
-  });
-}
 
 </script>
 </body>
