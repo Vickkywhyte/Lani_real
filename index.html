@@ -944,7 +944,7 @@
           <li>or waterwave — your choice</li>
           <li>Hair min. 5 inches for sew-in</li>
         </ul>
-        <a href="#booking" class="btn btn-dark">Book Now</a>
+        <a href="#booking" class="btn btn-dark" data-package="Traditional Sew-In Package">Book Now</a>
       </div>
     </div>
     <div class="p-card featured fade">
@@ -962,7 +962,7 @@
           <li>or waterwave — specify texture</li>
           <li>Book 1 week in advance</li>
         </ul>
-        <a href="#booking" class="btn btn-gold" style="display:block;text-align:center">Book Now</a>
+        <a href="#booking" class="btn btn-gold" style="display:block;text-align:center" data-package="5×5 Closure Package">Book Now</a>
       </div>
     </div>
     <div class="p-card fade">
@@ -979,7 +979,7 @@
           <li>or waterwave — specify texture</li>
           <li>Book 1 week in advance</li>
         </ul>
-        <a href="#booking" class="btn btn-dark">Book Now</a>
+        <a href="#booking" class="btn btn-dark" data-package="13×6 Closure Package">Book Now</a>
       </div>
     </div>
   </div>
@@ -1703,6 +1703,29 @@ document.querySelectorAll('.service-card').forEach(card => {
       e.preventDefault();
       bookThisService(card);
     }
+  });
+});
+
+/* ── Package "Book Now" → click-to-book ── */
+// data-package holds the exact checkbox value in the booking form's service list.
+document.querySelectorAll('a[data-package]').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+
+    const value = link.dataset.package;
+    const checkbox = document.querySelector('#serviceCheckboxes input[type="checkbox"][value="' + value + '"]');
+    if (checkbox) {
+      if (!checkbox.checked) checkbox.checked = true;
+      if (typeof updateSelectedServices === 'function') updateSelectedServices();
+    }
+
+    const booking = document.getElementById('booking');
+    if (booking) {
+      const offset = 24;
+      const top = booking.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+    highlightBookingForm();
   });
 });
 
