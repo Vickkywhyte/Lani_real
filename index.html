@@ -544,6 +544,17 @@
     .svc-category:first-child { border-top: none; }
     .svc-name { flex: 1; }
     .svc-price { color: var(--gold-l); font-size: .78rem; font-weight: 600; flex-shrink: 0; }
+    .service-category-label {
+      color: var(--gold); font-size: .7rem; font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase;
+      padding: .8rem 0 .3rem; border-top: 1px solid rgba(255,255,255,.08);
+      margin-top: .4rem; cursor: default; user-select: none;
+    }
+    .service-category-label:first-child { border-top: none; margin-top: 0; }
+    /* .service-checkboxes label is a flex row (checkbox + text), so margin-left:auto
+       — not float — is what actually pushes the price to the far right edge here;
+       float has no effect on children of a flex container. */
+    .service-price-tag { margin-left: auto; color: var(--gold); font-weight: 600; font-size: .85rem; }
     .service-checkboxes input[type="checkbox"] {
       appearance: none; -webkit-appearance: none;
       width: 16px; height: 16px; border: 1.5px solid rgba(255,255,255,.25);
@@ -1123,48 +1134,54 @@
             <span class="arrow">▼</span>
           </div>
           <div class="service-checkboxes" id="serviceCheckboxes">
-            <div class="svc-category">Ponytails</div>
-            <label><input type="checkbox" value="Natural Hair Ponytail" onchange="updateSelectedServices()"> <span class="svc-name">Natural Hair Ponytail</span><span class="svc-price">$130</span></label>
-            <label><input type="checkbox" value="Braided Ponytail" onchange="updateSelectedServices()"> <span class="svc-name">Braided Ponytail</span><span class="svc-price">$140</span></label>
-            <label><input type="checkbox" value="Half Up / Half Down Ponytail" onchange="updateSelectedServices()"> <span class="svc-name">Half Up / Half Down Ponytail</span><span class="svc-price">$150</span></label>
-            <label><input type="checkbox" value="Frontal Ponytail" onchange="updateSelectedServices()"> <span class="svc-name">Frontal Ponytail</span><span class="svc-price">$160</span></label>
+            <div class="service-category-label">Ponytails</div>
+            <label><input type="checkbox" value="Natural Hair Ponytail" onchange="updateSelectedServices()"> Natural Hair Ponytail <span class="service-price-tag">$130</span></label>
+            <label><input type="checkbox" value="Braided Ponytail" onchange="updateSelectedServices()"> Braided Ponytail <span class="service-price-tag">$140</span></label>
+            <label><input type="checkbox" value="Half Up / Half Down Ponytail" onchange="updateSelectedServices()"> Half Up / Half Down Ponytail <span class="service-price-tag">$150</span></label>
+            <label><input type="checkbox" value="Frontal Ponytail" onchange="updateSelectedServices()"> Frontal Ponytail <span class="service-price-tag">$160</span></label>
 
-            <div class="svc-category">Sew-In Services</div>
-            <label><input type="checkbox" value="Sew-In with Bangs" onchange="updateSelectedServices()"> <span class="svc-name">Sew-In with Bangs</span><span class="svc-price">$150</span></label>
-            <label><input type="checkbox" value="Leave Out Sew-In" onchange="updateSelectedServices()"> <span class="svc-name">Leave Out Sew-In</span><span class="svc-price">$150</span></label>
-            <label><input type="checkbox" value="Closure Install Sew-In" onchange="updateSelectedServices()"> <span class="svc-name">Closure Install Sew-In</span><span class="svc-price">$160</span></label>
-            <label><input type="checkbox" value="Flip Over Sew-In" onchange="updateSelectedServices()"> <span class="svc-name">Flip Over Sew-In</span><span class="svc-price">$160</span></label>
-            <label><input type="checkbox" value="Tribal Sew-In" onchange="updateSelectedServices()"> <span class="svc-name">Tribal Sew-In</span><span class="svc-price">$160</span></label>
-            <label><input type="checkbox" value="Frontal Install Sew-In" onchange="updateSelectedServices()"> <span class="svc-name">Frontal Install Sew-In</span><span class="svc-price">$200</span></label>
+            <div class="service-category-label">Sew-In Services</div>
+            <label><input type="checkbox" value="Sew-In with Bangs" onchange="updateSelectedServices()"> Sew-In with Bangs <span class="service-price-tag">$150</span></label>
+            <label><input type="checkbox" value="Leave Out Sew-In" onchange="updateSelectedServices()"> Leave Out Sew-In <span class="service-price-tag">$150</span></label>
+            <label><input type="checkbox" value="Closure Install Sew-In" onchange="updateSelectedServices()"> Closure Install Sew-In <span class="service-price-tag">$160</span></label>
+            <label><input type="checkbox" value="Flip Over Sew-In" onchange="updateSelectedServices()"> Flip Over Sew-In <span class="service-price-tag">$160</span></label>
+            <label><input type="checkbox" value="Tribal Sew-In" onchange="updateSelectedServices()"> Tribal Sew-In <span class="service-price-tag">$160</span></label>
+            <label><input type="checkbox" value="Frontal Install Sew-In" onchange="updateSelectedServices()"> Frontal Install Sew-In <span class="service-price-tag">$200</span></label>
 
-            <div class="svc-category">Wig Installs</div>
-            <label><input type="checkbox" value="Closure Wig Install" onchange="updateSelectedServices()"> <span class="svc-name">Closure Wig Install</span><span class="svc-price">$150</span></label>
-            <label><input type="checkbox" value="Frontal Wig Install" onchange="updateSelectedServices()"> <span class="svc-name">Frontal Wig Install</span><span class="svc-price">$170</span></label>
-            <label><input type="checkbox" value="360 Installation" onchange="updateSelectedServices()"> <span class="svc-name">360 Installation</span><span class="svc-price">$220</span></label>
+            <div class="service-category-label">Wig Installs</div>
+            <label><input type="checkbox" value="Wig Customization (Plucking + Bleaching)" onchange="updateSelectedServices()"> Wig Customization (Plucking + Bleaching) <span class="service-price-tag">$30</span></label>
+            <label><input type="checkbox" value="Closure Wig Install" onchange="updateSelectedServices()"> Closure Wig Install <span class="service-price-tag">$150</span></label>
+            <label><input type="checkbox" value="Frontal Wig Install" onchange="updateSelectedServices()"> Frontal Wig Install <span class="service-price-tag">$170</span></label>
+            <label><input type="checkbox" value="360 Installation" onchange="updateSelectedServices()"> 360 Installation <span class="service-price-tag">$220</span></label>
 
-            <div class="svc-category">Wig Construction</div>
-            <label><input type="checkbox" value="Closure Wig Build" onchange="updateSelectedServices()"> <span class="svc-name">Closure Wig Build</span><span class="svc-price">$150</span></label>
-            <label><input type="checkbox" value="Frontal Wig Build" onchange="updateSelectedServices()"> <span class="svc-name">Frontal Wig Build</span><span class="svc-price">$200</span></label>
+            <div class="service-category-label">Wig Construction</div>
+            <label><input type="checkbox" value="Closure Wig Build" onchange="updateSelectedServices()"> Closure Wig Build <span class="service-price-tag">$150</span></label>
+            <label><input type="checkbox" value="Frontal Wig Build" onchange="updateSelectedServices()"> Frontal Wig Build <span class="service-price-tag">$200</span></label>
 
-            <div class="svc-category">Natural Hair</div>
-            <label><input type="checkbox" value="Cornrows" onchange="updateSelectedServices()"> <span class="svc-name">Cornrows</span><span class="svc-price">$40</span></label>
-            <label><input type="checkbox" value="Wash & Style" onchange="updateSelectedServices()"> <span class="svc-name">Wash &amp; Style</span><span class="svc-price">$70</span></label>
-            <label><input type="checkbox" value="Lace Refresh & Styling" onchange="updateSelectedServices()"> <span class="svc-name">Lace Refresh &amp; Styling</span><span class="svc-price">$80</span></label>
-            <label><input type="checkbox" value="Retouching Service" onchange="updateSelectedServices()"> <span class="svc-name">Retouching Service</span><span class="svc-price">$140</span></label>
+            <div class="service-category-label">Natural Hair</div>
+            <label><input type="checkbox" value="Cornrows" onchange="updateSelectedServices()"> Cornrows <span class="service-price-tag">$40</span></label>
+            <label><input type="checkbox" value="Wash & Style" onchange="updateSelectedServices()"> Wash &amp; Style <span class="service-price-tag">$70</span></label>
+            <label><input type="checkbox" value="Lace Refresh & Styling" onchange="updateSelectedServices()"> Lace Refresh &amp; Styling <span class="service-price-tag">$80</span></label>
+            <label><input type="checkbox" value="Retouching Service" onchange="updateSelectedServices()"> Retouching Service <span class="service-price-tag">$140</span></label>
 
-            <div class="svc-category">Braids</div>
-            <label><input type="checkbox" value="Braids (Regular / Knotless)" onchange="updateSelectedServices()"> <span class="svc-name">Braids (Regular / Knotless)</span><span class="svc-price">from $150</span></label>
+            <div class="service-category-label">Colour Services</div>
+            <label><input type="checkbox" value="Elastic Band" onchange="updateSelectedServices()"> Elastic Band <span class="service-price-tag">$5</span></label>
+            <label><input type="checkbox" value="Wig Highlights" onchange="updateSelectedServices()"> Wig Highlights <span class="service-price-tag">$17</span></label>
+            <label><input type="checkbox" value="Lace Plucking" onchange="updateSelectedServices()"> Lace Plucking <span class="service-price-tag">$20</span></label>
+            <label><input type="checkbox" value="Bleaching" onchange="updateSelectedServices()"> Bleaching <span class="service-price-tag">$30</span></label>
+            <label><input type="checkbox" value="Revamping" onchange="updateSelectedServices()"> Revamping <span class="service-price-tag">$60</span></label>
+            <label><input type="checkbox" value="Wig Root Touch Up" onchange="updateSelectedServices()"> Wig Root Touch Up <span class="service-price-tag">$100</span></label>
+            <label><input type="checkbox" value="Full Colouring" onchange="updateSelectedServices()"> Full Colouring <span class="service-price-tag">$200</span></label>
 
-            <div class="svc-category">Colour &amp; Customization</div>
-            <label><input type="checkbox" value="Wig Customization / Colouring" onchange="updateSelectedServices()"> <span class="svc-name">Wig Customization / Colouring</span><span class="svc-price">from $5</span></label>
+            <div class="service-category-label">Braids</div>
+            <label><input type="checkbox" value="Braids (Regular / Knotless)" onchange="updateSelectedServices()"> Braids (Regular / Knotless) <span class="service-price-tag">from $150</span></label>
 
-            <div class="svc-category">Packages</div>
-            <label><input type="checkbox" value="Traditional Sew-In Package" onchange="updateSelectedServices()"> <span class="svc-name">Traditional Sew-In Package</span><span class="svc-price">CA$470</span></label>
-            <label><input type="checkbox" value="5×5 Closure Package" onchange="updateSelectedServices()"> <span class="svc-name">5×5 Closure Package</span><span class="svc-price">CA$650</span></label>
-            <label><input type="checkbox" value="13×6 Closure Package" onchange="updateSelectedServices()"> <span class="svc-name">13×6 Closure Package</span><span class="svc-price">CA$850</span></label>
-
-            <div class="svc-category">Other</div>
-            <label><input type="checkbox" value="Other — describe in notes" onchange="updateSelectedServices()"> <span class="svc-name">Other — describe in notes</span></label>
+            <div class="service-category-label">Package Deals</div>
+            <label><input type="checkbox" value="Traditional Sew-In Package" onchange="updateSelectedServices()"> Traditional Sew-In Package <span class="service-price-tag">$470</span></label>
+            <label><input type="checkbox" value="2×6 Closure Package" onchange="updateSelectedServices()"> 2×6 Closure Package <span class="service-price-tag">$550</span></label>
+            <label><input type="checkbox" value="5×5 Closure Package" onchange="updateSelectedServices()"> 5×5 Closure Package <span class="service-price-tag">$650</span></label>
+            <label><input type="checkbox" value="13×6 Closure Package" onchange="updateSelectedServices()"> 13×6 Closure Package <span class="service-price-tag">$850</span></label>
+            <label><input type="checkbox" value="Other — I'll describe in notes" onchange="updateSelectedServices()"> Other — I'll describe in notes</label>
           </div>
           <div class="selected-services-tags" id="selectedServicesTags"></div>
           <input type="hidden" id="selectedServicesInput" name="service" />
@@ -1643,15 +1660,15 @@ addTilt('.p-card', 5);
 
 /* ── Service card → click-to-book ── */
 // Service cards represent categories; the booking checklist further down groups
-// the same names under .svc-category headers. "Natural Hair & Braids" spans two
-// of those headers (Natural Hair, Braids), so it maps to both.
+// the same names under .service-category-label headers. "Natural Hair & Braids"
+// spans two of those headers (Natural Hair, Braids), so it maps to both.
 const SERVICE_CATEGORY_MAP = {
   'Ponytails': ['Ponytails'],
   'Sew-In Services': ['Sew-In Services'],
   'Wig Installs': ['Wig Installs'],
   'Wig Construction': ['Wig Construction'],
   'Natural Hair & Braids': ['Natural Hair', 'Braids'],
-  'Colour & Customization': ['Colour & Customization']
+  'Colour & Customization': ['Colour Services']
 };
 
 function selectServiceCategory(categoryLabel) {
@@ -1662,7 +1679,7 @@ function selectServiceCategory(categoryLabel) {
   let changed = false;
   let inMatchingCategory = false;
   Array.from(container.children).forEach(node => {
-    if (node.classList.contains('svc-category')) {
+    if (node.classList.contains('service-category-label')) {
       inMatchingCategory = categories.includes(node.textContent.trim());
     } else if (inMatchingCategory && node.tagName === 'LABEL') {
       const cb = node.querySelector('input[type="checkbox"]');
