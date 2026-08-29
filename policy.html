@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Booking Policy — Lani Stylez</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold:     #B8924A;
+      --gold-l:   #D4AA6A;
+      --gold-d:   #8a6a30;
+      --dark:     #0f0f0f;
+      --char:     #1e1e1e;
+      --mid:      #666;
+      --light:    #F7F3EE;
+      --white:    #fff;
+      --serif:    Georgia, 'Times New Roman', serif;
+      --sans:     -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --ease-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --ease-snap:cubic-bezier(0.76, 0, 0.24, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+    body {
+      font-family: var(--sans);
+      color: #2C2C2C;
+      background: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    /* This page has no dark hero behind it, so — unlike index.html — the nav
+       stays permanently in its "scrolled" (dark, blurred) state rather than
+       toggling on scroll; a transparent nav would put white text on a white
+       page at the top. */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .9rem 5%;
+      background: rgba(15,15,15,.96);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 1px 30px rgba(0,0,0,.4);
+    }
+    .nav-logo {
+      font-family: var(--serif); font-size: 1.55rem; color: #fff;
+      letter-spacing: .1em; text-decoration: none;
+      transition: letter-spacing .3s var(--ease-out);
+    }
+    .nav-logo:hover { letter-spacing: .18em; }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; list-style: none; gap: 2.2rem; }
+    .nav-links a {
+      color: rgba(255,255,255,.82); text-decoration: none; font-size: .78rem;
+      letter-spacing: .15em; text-transform: uppercase;
+      position: relative; padding-bottom: 3px;
+      transition: color .2s;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px;
+      background: var(--gold); transition: width .3s var(--ease-out);
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta {
+      background: var(--gold); color: var(--dark) !important;
+      padding: .55rem 1.4rem; border-radius: 2px; font-weight: 700;
+      transition: background .2s, transform .2s, box-shadow .2s !important;
+      box-shadow: 0 2px 12px rgba(184,146,74,.3);
+    }
+    .nav-cta::after { display: none !important; }
+    .nav-cta:hover {
+      background: var(--gold-l) !important; color: var(--dark) !important;
+      box-shadow: 0 4px 20px rgba(184,146,74,.5);
+    }
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; background: none; border: none; padding: 4px; z-index: 1001;
+    }
+    .hamburger span {
+      display: block; width: 24px; height: 2px; background: #fff;
+      transition: transform .35s var(--ease-snap), opacity .25s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── POLICY CONTENT ── */
+    .policy-wrap {
+      max-width: 800px; margin: 0 auto;
+      padding: 8.5rem 5% 5rem;
+    }
+    .policy-hero { text-align: center; margin-bottom: 3.5rem; }
+    .policy-tag {
+      color: var(--gold); font-size: .7rem; letter-spacing: .34em;
+      text-transform: uppercase; display: block; margin-bottom: .8rem;
+    }
+    .policy-hero h1 {
+      font-family: var(--serif); font-size: clamp(2rem, 4vw, 2.9rem);
+      color: var(--dark); line-height: 1.15;
+    }
+    .policy-divider {
+      width: 56px; height: 2px;
+      background: linear-gradient(to right, var(--gold-d), var(--gold-l));
+      margin: 1.2rem auto 0;
+    }
+    .policy-intro {
+      color: var(--mid); max-width: 560px; margin: 1.4rem auto 0;
+      font-size: 1rem; line-height: 1.85;
+    }
+
+    .policy-section { margin-bottom: 2.75rem; }
+    .policy-section h2 {
+      font-family: var(--serif); font-size: 1.35rem; color: var(--dark);
+      margin-bottom: 1.1rem; padding-bottom: .6rem;
+      border-bottom: 2px solid var(--gold);
+    }
+    .policy-section p { color: #2C2C2C; font-size: .96rem; line-height: 1.8; margin-bottom: .9rem; }
+    .policy-section p:last-child { margin-bottom: 0; }
+    .policy-section ul { list-style: none; display: flex; flex-direction: column; gap: .75rem; }
+    .policy-section li {
+      color: #2C2C2C; font-size: .96rem; line-height: 1.75;
+      padding-left: 1.3rem; position: relative;
+    }
+    .policy-section li::before { content: '✦'; color: var(--gold); font-size: .6rem; position: absolute; left: 0; top: .5em; }
+    .policy-section a { color: var(--gold-d); text-decoration: underline; text-underline-offset: 2px; }
+    .policy-section a:hover { color: var(--gold); }
+
+    .policy-updated { font-size: .85rem; color: var(--mid); font-style: italic; margin-top: 1rem; }
+
+    .policy-ack {
+      background: var(--light); border-radius: 3px; border-left: 3px solid var(--gold);
+      padding: 1.5rem 1.75rem; text-align: center; margin-top: 3rem;
+      font-size: .92rem; color: #2C2C2C; line-height: 1.7;
+    }
+
+    /* ── FOOTER ── */
+    footer { background: #080808; color: rgba(255,255,255,.4); padding: 3.5rem 5%; text-align: center; }
+    .f-logo { font-family: var(--serif); font-size: 1.8rem; color: #fff; letter-spacing: .1em; display: block; margin-bottom: 1rem; text-decoration: none; transition: letter-spacing .3s var(--ease-out); }
+    .f-logo:hover { letter-spacing: .18em; }
+    .f-logo span { color: var(--gold); }
+    .f-tagline { font-size: .82rem; letter-spacing: .1em; margin-bottom: 1.5rem; }
+    .f-social { display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem; }
+    .f-social a {
+      display: flex; align-items: center; justify-content: center;
+      width: 38px; height: 38px; border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.12); color: rgba(255,255,255,.42);
+      text-decoration: none; font-size: .72rem; font-weight: 700; letter-spacing: .05em;
+      transition: border-color .25s, color .25s, transform .25s var(--ease-out), box-shadow .25s;
+    }
+    .f-social a:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-3px); box-shadow: 0 6px 16px rgba(184,146,74,.25); }
+    .f-links { display: flex; justify-content: center; gap: 1.8rem; list-style: none; margin-bottom: 2rem; flex-wrap: wrap; }
+    .f-links a { color: rgba(255,255,255,.35); text-decoration: none; font-size: .74rem; letter-spacing: .1em; text-transform: uppercase; transition: color .2s, transform .2s var(--ease-out); display: inline-block; }
+    .f-links a:hover { color: var(--gold); transform: translateY(-2px); }
+    .f-copy { font-size: .76rem; border-top: 1px solid rgba(255,255,255,.06); padding-top: 1.5rem; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none; position: fixed; inset: 0;
+        background: rgba(10,10,10,.98); flex-direction: column;
+        align-items: center; justify-content: center; gap: 2.4rem; z-index: 1000;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { font-size: 1.1rem; }
+      .hamburger { display: flex; }
+      .policy-wrap { padding: 6.5rem 6% 4rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVIGATION ── -->
+<nav class="nav" id="mainNav">
+  <a href="index.html#home" class="nav-logo">Lani <span>Stylez</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html#services" onclick="closeMenu()">Services</a></li>
+    <li><a href="index.html#gallery"  onclick="closeMenu()">Gallery</a></li>
+    <li><a href="index.html#pricing"  onclick="closeMenu()">Pricing</a></li>
+    <li><a href="index.html#testimonials" onclick="closeMenu()">Reviews</a></li>
+    <li><a href="index.html#about"    onclick="closeMenu()">About</a></li>
+    <li><a href="index.html#booking" class="nav-cta" onclick="closeMenu()">Book Now</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ── POLICY CONTENT ── -->
+<main class="policy-wrap">
+  <div class="policy-hero">
+    <span class="policy-tag">Please Read Before Booking</span>
+    <h1>Booking Policy</h1>
+    <div class="policy-divider"></div>
+    <p class="policy-intro">To keep scheduling fair and stress-free for every client, please review the policy below before requesting an appointment with Lani Stylez.</p>
+  </div>
+
+  <section class="policy-section">
+    <h2>1. Appointments &amp; Deposits</h2>
+    <ul>
+      <li>A non-refundable deposit of $40 CAD is required to secure your appointment.</li>
+      <li>The remaining balance is due in CASH on the day of your appointment.</li>
+      <li>All appointments are confirmed only once the deposit has been received.</li>
+      <li>Deposits are applied toward your total service cost and are non-transferable.</li>
+    </ul>
+  </section>
+
+  <section class="policy-section">
+    <h2>2. Cancellation Policy</h2>
+    <ul>
+      <li>Appointments may be cancelled up to 48 hours in advance via email (<a href="mailto:Lanistylez@gmail.com">Lanistylez@gmail.com</a>), Instagram DM (<a href="https://www.instagram.com/lanistylez" target="_blank" rel="noopener noreferrer">@lanistylez</a>), or text (<a href="tel:+14164734785">416-473-4785</a>).</li>
+      <li>Cancellations made less than 48 hours before the appointment will result in forfeiture of the deposit.</li>
+      <li>To reschedule, contact Lani at least 48 hours in advance. Your deposit will be transferred to the new date (one reschedule per booking).</li>
+    </ul>
+  </section>
+
+  <section class="policy-section">
+    <h2>3. Late Arrivals</h2>
+    <ul>
+      <li>Please arrive on time. If you will be more than 10 minutes late, you must contact Lani immediately.</li>
+      <li>Appointments not communicated about within 10 minutes of the scheduled time will be automatically cancelled, and the deposit will be forfeited.</li>
+      <li>Depending on availability, late arrivals may result in a shortened service to avoid delaying other clients.</li>
+    </ul>
+  </section>
+
+  <section class="policy-section">
+    <h2>4. No-Shows</h2>
+    <ul>
+      <li>Failure to attend a confirmed appointment without notice constitutes a no-show.</li>
+      <li>No-shows will forfeit the full deposit.</li>
+      <li>Repeat no-shows (2 or more) may result in a higher deposit requirement or prepayment for future bookings.</li>
+    </ul>
+  </section>
+
+  <section class="policy-section">
+    <h2>5. Guest Policy</h2>
+    <p>No additional guests may accompany you to your appointment. This ensures a calm, professional environment and protects all clients' comfort and privacy.</p>
+  </section>
+
+  <section class="policy-section">
+    <h2>6. Service Preparation Requirements</h2>
+    <ul>
+      <li><strong>Ponytails:</strong> Hair must be freshly washed and blown out with no oils or grease.</li>
+      <li><strong>Sew-Ins &amp; Wig Installs:</strong> Natural hair must be neatly washed and blow-dried. Weave units must be clean.</li>
+      <li><strong>Wig Installs (Frontal):</strong> Hair/wig must be dropped off 3 days prior to your appointment date.</li>
+      <li><strong>Lace Installations:</strong> Please come with a clean lace.</li>
+      <li>Failure to meet preparation requirements may result in refusal of service, a rescheduled appointment, or additional charges.</li>
+    </ul>
+  </section>
+
+  <section class="policy-section">
+    <h2>7. Health, Allergies &amp; Liability</h2>
+    <ul>
+      <li>Please inform Lani of any scalp conditions, allergies, or sensitivities before your appointment, especially for colour, bleaching, or chemical services.</li>
+      <li>Lani Stylez is not liable for allergic reactions to products when prior disclosure was not made.</li>
+      <li>If you experience any discomfort during a service, please speak up immediately so adjustments can be made.</li>
+    </ul>
+  </section>
+
+  <section class="policy-section">
+    <h2>8. Photos &amp; Social Media</h2>
+    <p>Lani Stylez may photograph completed styles for portfolio and social media use. If you prefer not to have your photos shared, please let Lani know before or during your appointment — your privacy will be fully respected.</p>
+  </section>
+
+  <section class="policy-section">
+    <h2>9. Minors</h2>
+    <p>Clients under 16 years of age must be accompanied by a parent or legal guardian who remains on-site for the duration of the appointment.</p>
+  </section>
+
+  <section class="policy-section">
+    <h2>10. Personal Belongings</h2>
+    <p>Lani Stylez is not responsible for any lost, stolen, or damaged personal belongings brought to the appointment.</p>
+  </section>
+
+  <section class="policy-section">
+    <h2>11. Right to Refuse Service</h2>
+    <p>Lani Stylez reserves the right to refuse or discontinue service at any time if a client's behaviour is disruptive, disrespectful, or creates an unsafe environment. In such cases, partial or no refund may be issued at Lani's discretion.</p>
+  </section>
+
+  <section class="policy-section">
+    <h2>12. Satisfaction &amp; Concerns</h2>
+    <p>Your satisfaction matters. If you have any concerns about your service, please contact Lani within 48 hours of your appointment so we can make it right.</p>
+    <p>Adjustments or corrections will be offered at Lani's discretion and must be done by Lani Stylez — work altered by another stylist is not eligible for corrections.</p>
+  </section>
+
+  <section class="policy-section">
+    <h2>13. Policy Updates</h2>
+    <p>Lani Stylez reserves the right to update this policy at any time. Clients will be notified of significant changes. The most current version is always available on this page.</p>
+    <p class="policy-updated">Last updated: August 2026</p>
+  </section>
+
+  <p class="policy-ack">By booking an appointment with Lani Stylez, you acknowledge and agree to the terms outlined above.</p>
+</main>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <a href="index.html#home" class="f-logo">Lani <span>Stylez</span></a>
+  <p class="f-tagline">Hamilton's Premier Hair Styling Experience</p>
+  <div class="f-social">
+    <a href="https://www.instagram.com/lanistylez" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+    </a>
+    <a href="https://www.tiktok.com/@lanistylez" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>
+    </a>
+  </div>
+  <ul class="f-links">
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="index.html#gallery">Gallery</a></li>
+    <li><a href="index.html#pricing">Pricing</a></li>
+    <li><a href="index.html#testimonials">Reviews</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#booking">Book Now</a></li>
+    <li><a href="policy.html">Booking Policy</a></li>
+    <li><a href="#">Privacy</a></li>
+  </ul>
+  <div class="f-copy"><p>&copy; 2026 Lani Stylez. All rights reserved. Hamilton, Ontario, Canada.</p></div>
+</footer>
+
+<script>
+const hamburger = document.getElementById('hamburger');
+const navLinks   = document.getElementById('navLinks');
+function toggleMenu() {
+  const open = navLinks.classList.toggle('open');
+  hamburger.classList.toggle('open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+}
+function closeMenu() {
+  navLinks.classList.remove('open');
+  hamburger.classList.remove('open');
+  document.body.style.overflow = '';
+}
+</script>
+</body>
+</html>
