@@ -521,6 +521,13 @@
     }
     .service-checkboxes label:hover { background: rgba(184,146,74,.06); color: #fff !important; }
     .service-checkboxes label:last-child { border-bottom: none; }
+    .svc-category {
+      padding: .6rem 1rem .35rem; font-size: .62rem; font-weight: 700;
+      letter-spacing: .16em; text-transform: uppercase; color: var(--gold-l);
+      background: rgba(255,255,255,.03); border-bottom: 1px solid rgba(255,255,255,.05);
+      cursor: default; user-select: none;
+    }
+    .svc-category:first-child { border-top: none; }
     .svc-name { flex: 1; }
     .svc-price { color: var(--gold-l); font-size: .78rem; font-weight: 600; flex-shrink: 0; }
     .service-checkboxes input[type="checkbox"] {
@@ -565,13 +572,13 @@
     .time-slots-label { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.5); margin-bottom: .5rem; }
     .time-slots-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .6rem; margin-bottom: 1rem; }
     .time-slot-btn {
-      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04); border: 1px solid rgba(184,146,74,.35);
       border-radius: 2px; padding: .65rem .5rem; color: #fff;
       font-size: .84rem; font-family: var(--sans); cursor: pointer;
       transition: all .25s var(--ease-out); text-align: center;
     }
     .time-slot-btn:hover:not(.booked):not(.selected) {
-      border-color: var(--gold); background: rgba(184,146,74,.08);
+      border-color: var(--gold); background: rgba(184,146,74,.14);
     }
     .time-slot-btn.selected {
       background: var(--gold); color: var(--dark); border-color: var(--gold);
@@ -615,6 +622,40 @@
     .booking-details .bd-row:last-child { border-bottom: none; }
     .booking-details .bd-label { color: rgba(255,255,255,.45); }
     .booking-details .bd-value { color: var(--gold-l); font-weight: 600; }
+
+    /* ── BOOKING POLICY ── */
+    .booking-policy {
+      background: rgba(184,146,74,.06); border: 1px solid rgba(184,146,74,.22);
+      border-radius: 3px; padding: 1.3rem 1.4rem; margin: 1.4rem 0 .2rem;
+    }
+    .policy-title {
+      font-family: var(--serif); font-size: 1rem; color: var(--gold-l);
+      margin-bottom: .75rem; letter-spacing: .02em;
+    }
+    .policy-list { list-style: none; display: flex; flex-direction: column; gap: .55rem; margin-bottom: 1.1rem; }
+    .policy-list li {
+      font-size: .8rem; line-height: 1.6; color: rgba(255,255,255,.62);
+      padding-left: 1rem; position: relative;
+    }
+    .policy-list li::before { content: '—'; position: absolute; left: 0; color: var(--gold); }
+    .policy-agree {
+      display: flex; align-items: flex-start; gap: .6rem; cursor: pointer;
+      padding-top: .9rem; border-top: 1px solid rgba(255,255,255,.08);
+    }
+    .policy-agree input[type="checkbox"] {
+      appearance: none; -webkit-appearance: none;
+      width: 17px; height: 17px; border: 1.5px solid rgba(255,255,255,.3);
+      border-radius: 2px; flex-shrink: 0; cursor: pointer; margin-top: .1rem;
+      position: relative; background: transparent;
+      transition: border-color .2s, background .2s;
+    }
+    .policy-agree input[type="checkbox"]:checked { background: var(--gold); border-color: var(--gold); }
+    .policy-agree input[type="checkbox"]:checked::after {
+      content: '✓'; position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--dark); font-size: .68rem; font-weight: 700;
+    }
+    .policy-agree span { font-size: .84rem; color: rgba(255,255,255,.8); line-height: 1.5; }
 
     /* ── FOOTER ── */
     footer { background: #080808; color: rgba(255,255,255,.4); padding: 3.5rem 5%; text-align: center; }
@@ -1068,31 +1109,48 @@
             <span class="arrow">▼</span>
           </div>
           <div class="service-checkboxes" id="serviceCheckboxes">
+            <div class="svc-category">Ponytails</div>
             <label><input type="checkbox" value="Natural Hair Ponytail" onchange="updateSelectedServices()"> <span class="svc-name">Natural Hair Ponytail</span><span class="svc-price">$130</span></label>
             <label><input type="checkbox" value="Braided Ponytail" onchange="updateSelectedServices()"> <span class="svc-name">Braided Ponytail</span><span class="svc-price">$140</span></label>
             <label><input type="checkbox" value="Half Up / Half Down Ponytail" onchange="updateSelectedServices()"> <span class="svc-name">Half Up / Half Down Ponytail</span><span class="svc-price">$150</span></label>
             <label><input type="checkbox" value="Frontal Ponytail" onchange="updateSelectedServices()"> <span class="svc-name">Frontal Ponytail</span><span class="svc-price">$160</span></label>
+
+            <div class="svc-category">Sew-In Services</div>
+            <label><input type="checkbox" value="Sew-In with Bangs" onchange="updateSelectedServices()"> <span class="svc-name">Sew-In with Bangs</span><span class="svc-price">$150</span></label>
+            <label><input type="checkbox" value="Leave Out Sew-In" onchange="updateSelectedServices()"> <span class="svc-name">Leave Out Sew-In</span><span class="svc-price">$150</span></label>
             <label><input type="checkbox" value="Closure Install Sew-In" onchange="updateSelectedServices()"> <span class="svc-name">Closure Install Sew-In</span><span class="svc-price">$160</span></label>
-            <label><input type="checkbox" value="Frontal Install Sew-In" onchange="updateSelectedServices()"> <span class="svc-name">Frontal Install Sew-In</span><span class="svc-price">$200</span></label>
             <label><input type="checkbox" value="Flip Over Sew-In" onchange="updateSelectedServices()"> <span class="svc-name">Flip Over Sew-In</span><span class="svc-price">$160</span></label>
             <label><input type="checkbox" value="Tribal Sew-In" onchange="updateSelectedServices()"> <span class="svc-name">Tribal Sew-In</span><span class="svc-price">$160</span></label>
-            <label><input type="checkbox" value="Leave Out Sew-In" onchange="updateSelectedServices()"> <span class="svc-name">Leave Out Sew-In</span><span class="svc-price">$150</span></label>
-            <label><input type="checkbox" value="Sew-In with Bangs" onchange="updateSelectedServices()"> <span class="svc-name">Sew-In with Bangs</span><span class="svc-price">$150</span></label>
+            <label><input type="checkbox" value="Frontal Install Sew-In" onchange="updateSelectedServices()"> <span class="svc-name">Frontal Install Sew-In</span><span class="svc-price">$200</span></label>
+
+            <div class="svc-category">Wig Installs</div>
             <label><input type="checkbox" value="Closure Wig Install" onchange="updateSelectedServices()"> <span class="svc-name">Closure Wig Install</span><span class="svc-price">$150</span></label>
             <label><input type="checkbox" value="Frontal Wig Install" onchange="updateSelectedServices()"> <span class="svc-name">Frontal Wig Install</span><span class="svc-price">$170</span></label>
             <label><input type="checkbox" value="360 Installation" onchange="updateSelectedServices()"> <span class="svc-name">360 Installation</span><span class="svc-price">$220</span></label>
-            <label><input type="checkbox" value="Closure Wig Construction" onchange="updateSelectedServices()"> <span class="svc-name">Closure Wig Construction</span><span class="svc-price">$150</span></label>
-            <label><input type="checkbox" value="Frontal Wig Construction" onchange="updateSelectedServices()"> <span class="svc-name">Frontal Wig Construction</span><span class="svc-price">$200</span></label>
+
+            <div class="svc-category">Wig Construction</div>
+            <label><input type="checkbox" value="Closure Wig Build" onchange="updateSelectedServices()"> <span class="svc-name">Closure Wig Build</span><span class="svc-price">$150</span></label>
+            <label><input type="checkbox" value="Frontal Wig Build" onchange="updateSelectedServices()"> <span class="svc-name">Frontal Wig Build</span><span class="svc-price">$200</span></label>
+
+            <div class="svc-category">Natural Hair</div>
             <label><input type="checkbox" value="Cornrows" onchange="updateSelectedServices()"> <span class="svc-name">Cornrows</span><span class="svc-price">$40</span></label>
             <label><input type="checkbox" value="Wash & Style" onchange="updateSelectedServices()"> <span class="svc-name">Wash &amp; Style</span><span class="svc-price">$70</span></label>
             <label><input type="checkbox" value="Lace Refresh & Styling" onchange="updateSelectedServices()"> <span class="svc-name">Lace Refresh &amp; Styling</span><span class="svc-price">$80</span></label>
             <label><input type="checkbox" value="Retouching Service" onchange="updateSelectedServices()"> <span class="svc-name">Retouching Service</span><span class="svc-price">$140</span></label>
+
+            <div class="svc-category">Braids</div>
             <label><input type="checkbox" value="Braids (Regular / Knotless)" onchange="updateSelectedServices()"> <span class="svc-name">Braids (Regular / Knotless)</span><span class="svc-price">from $150</span></label>
+
+            <div class="svc-category">Colour &amp; Customization</div>
             <label><input type="checkbox" value="Wig Customization / Colouring" onchange="updateSelectedServices()"> <span class="svc-name">Wig Customization / Colouring</span><span class="svc-price">from $5</span></label>
+
+            <div class="svc-category">Packages</div>
             <label><input type="checkbox" value="Traditional Sew-In Package" onchange="updateSelectedServices()"> <span class="svc-name">Traditional Sew-In Package</span><span class="svc-price">CA$470</span></label>
             <label><input type="checkbox" value="5×5 Closure Package" onchange="updateSelectedServices()"> <span class="svc-name">5×5 Closure Package</span><span class="svc-price">CA$650</span></label>
             <label><input type="checkbox" value="13×6 Closure Package" onchange="updateSelectedServices()"> <span class="svc-name">13×6 Closure Package</span><span class="svc-price">CA$850</span></label>
-            <label><input type="checkbox" value="Other — I'll describe in notes" onchange="updateSelectedServices()"> <span class="svc-name">Other — I'll describe in notes</span></label>
+
+            <div class="svc-category">Other</div>
+            <label><input type="checkbox" value="Other — describe in notes" onchange="updateSelectedServices()"> <span class="svc-name">Other — describe in notes</span></label>
           </div>
           <div class="selected-services-tags" id="selectedServicesTags"></div>
           <input type="hidden" id="selectedServicesInput" name="service" />
@@ -1112,6 +1170,22 @@
         <input type="hidden" id="selectedTimeSlot" name="preferred_time" />
 
         <div class="form-group"><label for="notes">Notes (optional)</label><textarea id="notes" name="notes" placeholder="Tell Lani about your hair goals or any special requests…"></textarea></div>
+
+        <div class="booking-policy">
+          <h4 class="policy-title">Booking Policy</h4>
+          <ul class="policy-list">
+            <li>A $40 non-refundable deposit is required to secure your appointment. The remaining balance is due in cash on the day of your visit.</li>
+            <li>Please provide at least 24 hours' notice if you need to cancel or reschedule. Cancellations made within 24 hours of your appointment will forfeit the deposit.</li>
+            <li>No-shows (no cancellation, no contact) will forfeit the full deposit. Clients with 2 or more no-shows will be required to prepay in full for future bookings.</li>
+            <li>Please arrive on time. If you arrive more than 15 minutes late, your appointment may be shortened to stay on schedule for other clients.</li>
+            <li>If Lani needs to reschedule your appointment, you will receive priority rebooking at no additional cost.</li>
+          </ul>
+          <label class="policy-agree">
+            <input type="checkbox" id="policyAgree" />
+            <span>I have read and agree to the booking policy</span>
+          </label>
+        </div>
+
         <button type="submit" class="btn btn-gold form-submit" id="bookBtn">Book Appointment</button>
       </form>
 
@@ -1168,6 +1242,26 @@ const TIME_SLOTS = [
   '3:00 PM', '3:30 PM', '4:00 PM', '4:30 PM'
 ];
 const TOTAL_SLOTS = TIME_SLOTS.length; // 16
+
+// Appointments run ~3 hours (6 half-hour slots). A candidate slot at index `c`
+// overlaps a booking at index `b` whenever their 3-hour windows intersect,
+// i.e. |b - c| <= 5 — this single check covers direct bookings and both the
+// forward (new appointment would run into a later booking) and backward
+// (existing appointment would still be running when the new one starts) cases.
+const BUFFER_SLOTS = 5;
+
+// Shared by renderTimeSlots() and the fully-booked checks below, so "fully
+// booked" always means "no slot survives the 3-hour buffer", not just
+// "16 literal rows" — a handful of well-spaced bookings can block every slot.
+function getAvailableSlotCount(bookedTimeSlots) {
+  const bookedIndexes = bookedTimeSlots.map(s => TIME_SLOTS.indexOf(s)).filter(i => i !== -1);
+  let available = 0;
+  TIME_SLOTS.forEach((slot, index) => {
+    const blocked = bookedIndexes.some(b => Math.abs(b - index) <= BUFFER_SLOTS);
+    if (!blocked) available++;
+  });
+  return available;
+}
 
 let selectedSlot = null;
 let bookedSlots = [];
@@ -1255,10 +1349,10 @@ async function fetchFullyBookedDates() {
       dateCounts[b.date].add(b.time_slot);
     });
 
-    // Find dates where all slots are booked
+    // Find dates where the 3-hour buffer leaves no slot bookable
     fullyBookedDates = new Set();
     for (const [date, slots] of Object.entries(dateCounts)) {
-      if (slots.size >= TOTAL_SLOTS) {
+      if (getAvailableSlotCount(Array.from(slots)) === 0) {
         fullyBookedDates.add(date);
       }
     }
@@ -1327,8 +1421,8 @@ dateInput.addEventListener('change', async function() {
     bookedSlots = [];
   }
 
-  // All 16 slots taken — hide the grid and show the fully-booked warning
-  if (bookedSlots.length >= TOTAL_SLOTS) {
+  // No slot survives the 3-hour buffer — hide the grid, show the fully-booked warning
+  if (getAvailableSlotCount(bookedSlots) === 0) {
     fullyBookedDates.add(date);
     showDateWarning('This date is fully booked. Please choose a different day.');
     return;
@@ -1336,13 +1430,6 @@ dateInput.addEventListener('change', async function() {
 
   renderTimeSlots();
 });
-
-// Appointments run ~3 hours (6 half-hour slots). A candidate slot at index `c`
-// overlaps a booking at index `b` whenever their 3-hour windows intersect,
-// i.e. |b - c| <= 5 — this single check covers direct bookings and both the
-// forward (new appointment would run into a later booking) and backward
-// (existing appointment would still be running when the new one starts) cases.
-const BUFFER_SLOTS = 5;
 
 function renderTimeSlots() {
   const grid = document.getElementById('timeSlotsGrid');
@@ -1391,6 +1478,11 @@ async function handleBooking(e) {
 
   if (!selectedSlot) {
     alert('Please select a time slot.');
+    return false;
+  }
+
+  if (!document.getElementById('policyAgree').checked) {
+    alert('Please review and accept the booking policy to continue.');
     return false;
   }
 
