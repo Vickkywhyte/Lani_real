@@ -1337,20 +1337,34 @@ dateInput.addEventListener('change', async function() {
   renderTimeSlots();
 });
 
+// Appointments run ~3 hours (6 half-hour slots). A candidate slot at index `c`
+// overlaps a booking at index `b` whenever their 3-hour windows intersect,
+// i.e. |b - c| <= 5 — this single check covers direct bookings and both the
+// forward (new appointment would run into a later booking) and backward
+// (existing appointment would still be running when the new one starts) cases.
+const BUFFER_SLOTS = 5;
+
 function renderTimeSlots() {
   const grid = document.getElementById('timeSlotsGrid');
   grid.innerHTML = '';
 
-  TIME_SLOTS.forEach(slot => {
+  const bookedIndexes = bookedSlots
+    .map(slot => TIME_SLOTS.indexOf(slot))
+    .filter(i => i !== -1);
+
+  TIME_SLOTS.forEach((slot, index) => {
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'time-slot-btn';
     btn.textContent = slot;
 
-    if (bookedSlots.includes(slot)) {
+    const directlyBooked = bookedSlots.includes(slot);
+    const blockedByBuffer = bookedIndexes.some(b => Math.abs(b - index) <= BUFFER_SLOTS);
+
+    if (directlyBooked || blockedByBuffer) {
       btn.classList.add('booked');
       btn.disabled = true;
-      btn.title = 'This time is already booked';
+      btn.title = directlyBooked ? 'Booked' : 'Unavailable';
     } else {
       btn.addEventListener('click', () => selectSlot(slot, btn));
     }
