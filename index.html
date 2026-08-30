@@ -421,7 +421,10 @@
 
     /* ── PRICING ── */
     #pricing { background: var(--white); }
-    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(255px, 1fr)); gap: 1.875rem; max-width: 980px; margin: 0 auto; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.875rem; max-width: 1180px; margin: 0 auto; align-items: stretch; }
+    .pricing-grid .p-card { display: flex; flex-direction: column; height: 100%; }
+    .pricing-grid .p-body { display: flex; flex-direction: column; flex: 1; }
+    .pricing-grid .p-features { flex: 1; }
     .p-card {
       border: 1px solid #e8e8e8; border-radius: 3px; overflow: hidden;
       transition: transform .2s var(--ease-out), box-shadow .2s var(--ease-out);
@@ -755,6 +758,10 @@
       .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(3, 220px); }
       .gallery-item:nth-child(1) { grid-column: 1 / -1; grid-row: 1; }
       .gallery-item:nth-child(4) { grid-column: 1 / -1; }
+      .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .pricing-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 768px) {
       /* Stacked hero: photo on top, text below */
@@ -913,6 +920,23 @@
         <a href="#booking" class="btn btn-dark" data-package="Traditional Sew-In Package">Book Now</a>
       </div>
     </div>
+    <div class="p-card fade">
+      <div class="p-head">
+        <div class="p-name">2×6 Closure Package</div>
+        <div class="p-price"><sup>CA$</sup>550</div>
+      </div>
+      <div class="p-body">
+        <ul class="p-features">
+          <li>3 virgin bundles (16"–18") by Lani</li>
+          <li>2×6 HD closure included</li>
+          <li>Full sew-in install &amp; styling</li>
+          <li>Straight, bodywave, kinky straight</li>
+          <li>or waterwave — specify texture</li>
+          <li>Book 1 week in advance</li>
+        </ul>
+        <a href="#booking" class="btn btn-dark" data-package="2×6 Closure Package">Book Now</a>
+      </div>
+    </div>
     <div class="p-card featured fade">
       <div class="p-badge">Most Popular</div>
       <div class="p-head">
@@ -949,7 +973,7 @@
       </div>
     </div>
   </div>
-  <p class="pkg-note">Also available: <strong>2×6 Package CA$550</strong> &nbsp;|&nbsp; Longer lengths (22"–26"): <strong>2×6 CA$1,095 &nbsp;·&nbsp; 5×5 CA$1,250 &nbsp;·&nbsp; 13×6 CA$1,400</strong><br>Contact Lani for custom length quotes.</p>
+  <p class="pkg-note">Longer lengths (22"–26"): <strong>2×6 CA$1,095 &nbsp;·&nbsp; 5×5 CA$1,250 &nbsp;·&nbsp; 13×6 CA$1,400</strong><br>Contact Lani for custom length quotes.</p>
 
   <!-- Full Individual Price List -->
   <div class="price-list-wrap">
