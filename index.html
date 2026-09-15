@@ -639,6 +639,9 @@
     }
     .booking-success h3 { font-family: var(--serif); font-size: 1.3rem; color: #fff; margin-bottom: .6rem; }
     .booking-success p { color: rgba(255,255,255,.6); font-size: .88rem; line-height: 1.6; }
+    /* !important needed here since the button's base background is set via
+       inline style (per spec) — inline styles otherwise beat any stylesheet rule. */
+    .deposit-pay-btn:hover { background: var(--gold-d) !important; }
     .booking-details {
       background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.09);
       border-radius: 3px; padding: 1.2rem; margin: 1.2rem 0; text-align: left;
@@ -1247,9 +1250,27 @@
       <!-- Success Message -->
       <div class="booking-success" id="bookingSuccess">
         <div class="success-icon">✓</div>
-        <h3>Booking Confirmed!</h3>
+        <h3>Booking Received!</h3>
         <p>Your appointment has been reserved. Lani will reach out to confirm the details.</p>
         <div class="booking-details" id="bookingDetails"></div>
+
+        <div style="border-left: 3px solid var(--gold); background: rgba(184,146,74,0.08); padding: 24px; border-radius: 12px; margin-top: 20px;">
+          <h3 style="font-family: Georgia, serif; color: var(--gold); margin-bottom: 12px; font-size: 1.2rem;">Secure Your Appointment</h3>
+          <p style="color: var(--light); font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px;">A $40 non-refundable deposit is required within 24 hours to confirm your booking. If no deposit is received, your appointment may be released.</p>
+
+          <div style="background: rgba(255,255,255,0.04); padding: 16px; border-radius: 8px; margin-bottom: 12px;">
+            <p style="margin-bottom: 8px;">🏦 <strong>Option 1: Interac e-Transfer</strong></p>
+            <p>Send $40 to laniemporium@gmail.com — use your booking date as the memo.</p>
+          </div>
+
+          <div style="background: rgba(255,255,255,0.04); padding: 16px; border-radius: 8px; margin-bottom: 12px;">
+            <p style="margin-bottom: 8px;">💳 <strong>Option 2: Pay by Card</strong></p>
+            <a href="https://buy.stripe.com/28E4gBbkR9u66FcfSw6kg00" target="_blank" rel="noopener noreferrer" class="deposit-pay-btn" style="display: inline-block; background: var(--gold); color: #fff; text-decoration: none; padding: 12px 28px; border-radius: 6px; font-family: Georgia, serif; font-size: 1rem; cursor: pointer; margin-top: 8px;">Pay $40 Deposit</a>
+          </div>
+
+          <p style="color: #999; font-size: 0.85rem; margin-top: 16px;">Your appointment is held for 24 hours. If no deposit is received, it may be released.</p>
+        </div>
+
         <button class="btn btn-gold form-submit" onclick="resetBookingForm()" style="margin-top:1rem;">Book Another</button>
       </div>
     </div>
