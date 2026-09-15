@@ -12,10 +12,13 @@
 //   3. Set it as a Supabase secret:
 //        supabase secrets set RESEND_API_KEY=re_xxxxxxxxx --project-ref roxbhzmdawiaxixeuhob
 //   4. For now, emails send from onboarding@resend.dev (Resend's shared
-//      sandbox sender) — this works immediately, no domain setup needed.
-//      Once you verify your own domain in Resend, change the `from` address
-//      below (search "CHANGE THIS" ) to something like
-//      bookings@lanistylez.com.
+//      sandbox sender) — this works immediately, no domain setup needed,
+//      BUT it can only deliver to the Resend account owner's own inbox
+//      (currently victorthesis80@gmail.com). Bookings from any other
+//      customer email will fail to deliver until a custom domain is
+//      verified in Resend. Once you verify your own domain, change the
+//      `from` address below (search "CHANGE THIS") to something like
+//      Lani Stylez <bookings@lanistylez.com>.
 // ─────────────────────────────────────────────────────────────────────────
 
 const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xzdqznbw';
@@ -236,9 +239,12 @@ async function sendCustomerConfirmationEmail(booking: BookingPayload): Promise<v
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      // CHANGE THIS once your domain is verified in Resend, e.g.
-      // 'Lani Stylez <bookings@lanistylez.com>'
-      from: 'Lani Stylez <onboarding@resend.dev>',
+      // Sandbox sender — no display name allowed. Resend's onboarding@resend.dev
+      // address can only deliver to the Resend account owner's own inbox
+      // (currently victorthesis80@gmail.com), so real customer emails won't
+      // arrive until a custom domain is verified in Resend. CHANGE THIS once
+      // that's done, e.g. 'Lani Stylez <bookings@lanistylez.com>'.
+      from: 'onboarding@resend.dev',
       to: [booking.customer_email],
       subject: 'Booking Received — Lani Stylez',
       html: buildConfirmationEmailHtml(booking),
