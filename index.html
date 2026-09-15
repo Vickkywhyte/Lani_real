@@ -1596,6 +1596,25 @@ async function handleBooking(e) {
       return false;
     }
 
+    // Fire-and-forget: notify the owner + email the customer. The booking
+    // is already saved above — this is just the notification, so we don't
+    // await it or handle its errors.
+    fetch('https://roxbhzmdawiaxixeuhob.supabase.co/functions/v1/notify-booking', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJveGJoem1kYXdpYXhpeGV1aG9iIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODgwMTM3MzMsImV4cCI6MjEwMzU4OTczM30.1TpoiTF51x1awmq_sgHPF-UfdVmfE_LOdWBzhyJgurM'
+      },
+      body: JSON.stringify({
+        customer_name: customerName,
+        customer_email: form.email.value,
+        customer_phone: form.phone.value,
+        service: selectedServices,
+        date: form.preferred_date.value,
+        time_slot: selectedSlot
+      })
+    });
+
     // Show success
     form.style.display = 'none';
     const details = document.getElementById('bookingDetails');
