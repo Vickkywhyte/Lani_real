@@ -179,6 +179,38 @@ function buildConfirmationEmailHtml(booking: BookingPayload): string {
             </td>
           </tr>
 
+          <!-- Visit Us -->
+          <tr>
+            <td style="padding: 20px 32px 0;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${LIGHT}; border-radius: 8px;">
+                <tr>
+                  <td style="padding: 20px 24px;">
+                    <h2 style="font-family: Georgia, 'Times New Roman', serif; font-size: 17px; color:${DARK}; margin: 0 0 10px;">Visit Us at Our Upper James Street Studio ✨</h2>
+                    <p style="font-size: 14px; line-height: 1.7; color:#2C2C2C; margin: 0 0 6px;">📍 550 Upper James Street, Hamilton, ON</p>
+                    <p style="font-size: 14px; line-height: 1.7; color:#2C2C2C; margin: 0 0 10px;">Your beauty experience awaits. 🤍</p>
+                    <p style="font-size: 13px; line-height: 1.7; color:#666; margin: 0;">Planning your visit? Free parking is conveniently available around the area, with our name on the sign — making your appointment experience as seamless as possible.</p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Get In Touch -->
+          <tr>
+            <td style="padding: 16px 32px 0;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${LIGHT}; border-radius: 8px;">
+                <tr>
+                  <td style="padding: 20px 24px;">
+                    <h2 style="font-family: Georgia, 'Times New Roman', serif; font-size: 17px; color:${DARK}; margin: 0 0 10px;">Let's Get You Booked 💌</h2>
+                    <p style="font-size: 14px; line-height: 1.7; color:#2C2C2C; margin: 0 0 12px;">Have a question or ready to reserve your next appointment? We're just a message away.</p>
+                    <p style="font-size: 14px; line-height: 1.7; color:#2C2C2C; margin: 0 0 4px;">📞 Call or Text: <strong>+1 416 473-4578</strong></p>
+                    <p style="font-size: 14px; line-height: 1.7; color:#2C2C2C; margin: 0;">📧 Email: <strong>laniemporium@gmail.com</strong></p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
           <!-- Footer -->
           <tr>
             <td style="background:${DARK}; padding: 24px 32px; text-align:center; margin-top: 24px;">
@@ -187,7 +219,7 @@ function buildConfirmationEmailHtml(booking: BookingPayload): string {
               </div>
               <div style="font-size: 12.5px; color: rgba(255,255,255,.5); line-height: 1.7;">
                 550 Upper James Street, Hamilton, ON<br/>
-                416-473-4785
+                +1 416 473-4578
               </div>
             </td>
           </tr>
