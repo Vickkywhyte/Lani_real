@@ -168,6 +168,27 @@ function buildConfirmationEmailHtml(booking: BookingPayload): string {
             </td>
           </tr>
 
+          <!-- Visit Us / Get In Touch -->
+          <tr>
+            <td style="padding: 24px 32px 0;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${DARK}; border-radius: 8px;">
+                <tr>
+                  <td style="padding: 24px 28px;">
+                    <h2 style="font-family: Georgia, 'Times New Roman', serif; font-size: 17px; color:${GOLD}; margin: 0 0 12px;">Visit Us at Our Upper James Street Studio ✨</h2>
+                    <p style="font-size: 14px; line-height: 1.7; color:${LIGHT}; margin: 0 0 6px;">📍 550 Upper James Street, Hamilton, ON</p>
+                    <p style="font-size: 14px; line-height: 1.7; color:${LIGHT}; margin: 0 0 10px;">Your beauty experience awaits. 🤍</p>
+                    <p style="font-size: 13px; line-height: 1.7; color: rgba(247,243,238,.65); margin: 0 0 20px;">Planning your visit? Free parking is conveniently available around the area, with our name on the sign — making your appointment experience as seamless as possible.</p>
+
+                    <h3 style="font-family: Georgia, 'Times New Roman', serif; font-size: 16px; color:${GOLD}; margin: 0 0 10px; padding-top: 18px; border-top: 1px solid rgba(184,146,74,.25);">Let's Get You Booked 💌</h3>
+                    <p style="font-size: 14px; line-height: 1.7; color:${LIGHT}; margin: 0 0 10px;">Have a question or ready to reserve your next appointment? We're just a message away.</p>
+                    <p style="font-size: 14px; line-height: 1.7; color:${LIGHT}; margin: 0 0 4px;">📞 Call or Text: <strong style="color:${GOLD};">+1 416 473-4578</strong></p>
+                    <p style="font-size: 14px; line-height: 1.7; color:${LIGHT}; margin: 0;">📧 Email: <strong style="color:${GOLD};">laniemporium@gmail.com</strong></p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
           <!-- Policy reminders -->
           <tr>
             <td style="padding: 24px 32px 8px;">
@@ -176,38 +197,6 @@ function buildConfirmationEmailHtml(booking: BookingPayload): string {
                 ✦ 24-hour cancellation notice required for deposit refund<br/>
                 ✦ Late arrivals may result in shortened service time
               </p>
-            </td>
-          </tr>
-
-          <!-- Visit Us -->
-          <tr>
-            <td style="padding: 20px 32px 0;">
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${LIGHT}; border-radius: 8px;">
-                <tr>
-                  <td style="padding: 20px 24px;">
-                    <h2 style="font-family: Georgia, 'Times New Roman', serif; font-size: 17px; color:${DARK}; margin: 0 0 10px;">Visit Us at Our Upper James Street Studio ✨</h2>
-                    <p style="font-size: 14px; line-height: 1.7; color:#2C2C2C; margin: 0 0 6px;">📍 550 Upper James Street, Hamilton, ON</p>
-                    <p style="font-size: 14px; line-height: 1.7; color:#2C2C2C; margin: 0 0 10px;">Your beauty experience awaits. 🤍</p>
-                    <p style="font-size: 13px; line-height: 1.7; color:#666; margin: 0;">Planning your visit? Free parking is conveniently available around the area, with our name on the sign — making your appointment experience as seamless as possible.</p>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-
-          <!-- Get In Touch -->
-          <tr>
-            <td style="padding: 16px 32px 0;">
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${LIGHT}; border-radius: 8px;">
-                <tr>
-                  <td style="padding: 20px 24px;">
-                    <h2 style="font-family: Georgia, 'Times New Roman', serif; font-size: 17px; color:${DARK}; margin: 0 0 10px;">Let's Get You Booked 💌</h2>
-                    <p style="font-size: 14px; line-height: 1.7; color:#2C2C2C; margin: 0 0 12px;">Have a question or ready to reserve your next appointment? We're just a message away.</p>
-                    <p style="font-size: 14px; line-height: 1.7; color:#2C2C2C; margin: 0 0 4px;">📞 Call or Text: <strong>+1 416 473-4578</strong></p>
-                    <p style="font-size: 14px; line-height: 1.7; color:#2C2C2C; margin: 0;">📧 Email: <strong>laniemporium@gmail.com</strong></p>
-                  </td>
-                </tr>
-              </table>
             </td>
           </tr>
 
