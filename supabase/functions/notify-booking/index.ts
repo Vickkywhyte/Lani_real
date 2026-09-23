@@ -154,7 +154,7 @@ function buildConfirmationEmailHtml(booking: BookingPayload): string {
                       <tr>
                         <td style="padding: 14px 16px;">
                           <p style="margin: 0 0 4px; font-size: 14px; color:${DARK};">🏦 <strong>Interac e-Transfer</strong></p>
-                          <p style="margin: 0; font-size: 13.5px; color:#555;">Send $40 to <strong>laniemporium@gmail.com</strong></p>
+                          <p style="margin: 0; font-size: 13.5px; color:#555;">Send $40 to <strong>lanistylez2@gmail.com</strong></p>
                         </td>
                       </tr>
                     </table>
@@ -182,7 +182,7 @@ function buildConfirmationEmailHtml(booking: BookingPayload): string {
                     <h3 style="font-family: Georgia, 'Times New Roman', serif; font-size: 16px; color:${GOLD}; margin: 0 0 10px; padding-top: 18px; border-top: 1px solid rgba(184,146,74,.25);">Let's Get You Booked 💌</h3>
                     <p style="font-size: 14px; line-height: 1.7; color:${LIGHT}; margin: 0 0 10px;">Have a question or ready to reserve your next appointment? We're just a message away.</p>
                     <p style="font-size: 14px; line-height: 1.7; color:${LIGHT}; margin: 0 0 4px;">📞 Call or Text: <strong style="color:${GOLD};">+1 416 473-4578</strong></p>
-                    <p style="font-size: 14px; line-height: 1.7; color:${LIGHT}; margin: 0;">📧 Email: <strong style="color:${GOLD};">laniemporium@gmail.com</strong></p>
+                    <p style="font-size: 14px; line-height: 1.7; color:${LIGHT}; margin: 0;">📧 Email: <strong style="color:${GOLD};">lanistylez2@gmail.com</strong></p>
                   </td>
                 </tr>
               </table>
