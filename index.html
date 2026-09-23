@@ -1203,7 +1203,26 @@
             <label><input type="checkbox" value="Full Colouring" onchange="updateSelectedServices()"> Full Colouring <span class="service-price-tag">$200</span></label>
 
             <div class="service-category-label">Braids</div>
-            <label><input type="checkbox" value="Braids (Regular / Knotless)" onchange="updateSelectedServices()"> Braids (Regular / Knotless) <span class="service-price-tag">from $150</span></label>
+            <label><input type="checkbox" value="Braids – Large (Midback)" onchange="updateSelectedServices()"> Braids – Large (Midback) <span class="service-price-tag">$150</span></label>
+            <label><input type="checkbox" value="Braids – Large (Waist)" onchange="updateSelectedServices()"> Braids – Large (Waist) <span class="service-price-tag">$150</span></label>
+            <label><input type="checkbox" value="Braids – Large (Hip)" onchange="updateSelectedServices()"> Braids – Large (Hip) <span class="service-price-tag">$170</span></label>
+            <label><input type="checkbox" value="Braids – Medium-Large (Midback)" onchange="updateSelectedServices()"> Braids – Medium-Large (Midback) <span class="service-price-tag">$150</span></label>
+            <label><input type="checkbox" value="Braids – Medium-Large (Waist)" onchange="updateSelectedServices()"> Braids – Medium-Large (Waist) <span class="service-price-tag">$170</span></label>
+            <label><input type="checkbox" value="Braids – Medium-Large (Hip)" onchange="updateSelectedServices()"> Braids – Medium-Large (Hip) <span class="service-price-tag">$200</span></label>
+            <label><input type="checkbox" value="Braids – Medium (Midback)" onchange="updateSelectedServices()"> Braids – Medium (Midback) <span class="service-price-tag">$170</span></label>
+            <label><input type="checkbox" value="Braids – Medium (Waist)" onchange="updateSelectedServices()"> Braids – Medium (Waist) <span class="service-price-tag">$200</span></label>
+            <label><input type="checkbox" value="Braids – Medium (Hip)" onchange="updateSelectedServices()"> Braids – Medium (Hip) <span class="service-price-tag">$250</span></label>
+            <label><input type="checkbox" value="Braids – Small-Medium (Midback)" onchange="updateSelectedServices()"> Braids – Small-Medium (Midback) <span class="service-price-tag">$200</span></label>
+            <label><input type="checkbox" value="Braids – Small-Medium (Waist)" onchange="updateSelectedServices()"> Braids – Small-Medium (Waist) <span class="service-price-tag">$250</span></label>
+            <label><input type="checkbox" value="Braids – Small-Medium (Hip)" onchange="updateSelectedServices()"> Braids – Small-Medium (Hip) <span class="service-price-tag">$300</span></label>
+            <label><input type="checkbox" value="Braids – Small (Midback)" onchange="updateSelectedServices()"> Braids – Small (Midback) <span class="service-price-tag">$250</span></label>
+            <label><input type="checkbox" value="Braids – Small (Waist)" onchange="updateSelectedServices()"> Braids – Small (Waist) <span class="service-price-tag">$300</span></label>
+            <label><input type="checkbox" value="Braids – Small (Hip)" onchange="updateSelectedServices()"> Braids – Small (Hip) <span class="service-price-tag">$400</span></label>
+
+            <div class="service-category-label">Braid Add-Ons</div>
+            <label><input type="checkbox" value="Goddess / Bohemian Braids – Medium+ (add-on)" onchange="updateSelectedServices()"> Goddess / Bohemian Braids – Medium+ (add-on) <span class="service-price-tag">+$70</span></label>
+            <label><input type="checkbox" value="Goddess / Bohemian Braids – Small/Small-Medium (add-on)" onchange="updateSelectedServices()"> Goddess / Bohemian Braids – Small/Small-Medium (add-on) <span class="service-price-tag">+$100</span></label>
+            <label><input type="checkbox" value="Curl Ends (add-on)" onchange="updateSelectedServices()"> Curl Ends (add-on) <span class="service-price-tag">+$20</span></label>
 
             <div class="service-category-label">Package Deals</div>
             <label><input type="checkbox" value="Traditional Sew-In Package" onchange="updateSelectedServices()"> Traditional Sew-In Package <span class="service-price-tag">$470</span></label>
@@ -1727,13 +1746,14 @@ addTilt('.p-card', 5);
 /* ── Service card → click-to-book ── */
 // Service cards represent categories; the booking checklist further down groups
 // the same names under .service-category-label headers. "Natural Hair & Braids"
-// spans two of those headers (Natural Hair, Braids), so it maps to both.
+// maps to Natural Hair only: braids are priced per size/length, so pre-checking
+// every braid option would select 15 mutually exclusive choices.
 const SERVICE_CATEGORY_MAP = {
   'Ponytails': ['Ponytails'],
   'Sew-In Services': ['Sew-In Services'],
   'Wig Installs': ['Wig Installs'],
   'Wig Construction': ['Wig Construction'],
-  'Natural Hair & Braids': ['Natural Hair', 'Braids'],
+  'Natural Hair & Braids': ['Natural Hair'],
   'Colour & Customization': ['Colour Services']
 };
 
