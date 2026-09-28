@@ -1,8 +1,8 @@
 // ─────────────────────────────────────────────────────────────────────────
 // notify-booking — Supabase Edge Function
 //
-// Called after a new row lands in `bookings` (customer_name, customer_email,
-// customer_phone, service, date, time_slot). It does two things:
+// Called after a new row lands in `bookings` (booking_id, customer_name,
+// customer_email, customer_phone, service, date, time_slot). It does two things:
 //   1. Notifies the salon owner via Formspree (unchanged from before).
 //   2. Emails the customer a booking confirmation via Resend (new).
 //
@@ -29,6 +29,7 @@ const corsHeaders = {
 };
 
 interface BookingPayload {
+  booking_id?: string; // bookings.id — used as the Stripe client_reference_id
   customer_name: string;
   customer_email: string;
   customer_phone: string;
@@ -55,8 +56,22 @@ function escapeHtml(str: string): string {
     .replace(/"/g, '&quot;');
 }
 
+const STRIPE_DEPOSIT_BASE_URL = 'https://buy.stripe.com/28E4gBbkR9u66FcfSw6kg00';
+
+// Appends prefilled_email + client_reference_id so the deposit checkout is
+// pre-filled and the payment in the Stripe dashboard is traceable back to
+// this exact bookings row, not just "someone paid $40".
+function buildStripeDepositUrl(booking: BookingPayload): string {
+  const params = new URLSearchParams();
+  if (booking.customer_email) params.set('prefilled_email', booking.customer_email);
+  if (booking.booking_id) params.set('client_reference_id', booking.booking_id);
+  const query = params.toString();
+  return query ? `${STRIPE_DEPOSIT_BASE_URL}?${query}` : STRIPE_DEPOSIT_BASE_URL;
+}
+
 function buildConfirmationEmailHtml(booking: BookingPayload): string {
   const firstName = escapeHtml((booking.customer_name || '').trim().split(' ')[0] || 'there');
+  const stripeDepositUrl = buildStripeDepositUrl(booking);
   const service = escapeHtml(booking.service || '');
   const dateFormatted = formatDate(booking.date);
   const time = escapeHtml(booking.time_slot || '');
@@ -142,7 +157,7 @@ function buildConfirmationEmailHtml(booking: BookingPayload): string {
                       <tr>
                         <td style="padding: 14px 16px;">
                           <p style="margin: 0 0 6px; font-size: 14px; color:${DARK};">💳 <strong>Pay Online (Stripe)</strong></p>
-                          <a href="https://buy.stripe.com/28E4gBbkR9u66FcfSw6kg00" target="_blank"
+                          <a href="${stripeDepositUrl}" target="_blank"
                              style="display:inline-block; background:${GOLD}; color:#ffffff; text-decoration:none; padding: 10px 22px; border-radius: 5px; font-family: Georgia, 'Times New Roman', serif; font-size: 14px; margin-top: 4px;">
                             Pay $40 Deposit
                           </a>
