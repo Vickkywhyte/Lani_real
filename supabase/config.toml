@@ -1,0 +1,8 @@
+project_id = "roxbhzmdawiaxixeuhob"
+
+# Stripe calls this webhook directly and cannot send a Supabase JWT — it
+# authenticates itself via the Stripe-Signature header instead, which the
+# function verifies manually. Without this, Supabase's own gateway would
+# reject every real Stripe webhook with 401 before the function code runs.
+[functions.stripe-webhook]
+verify_jwt = false
